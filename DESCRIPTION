@@ -1,0 +1,15 @@
+Package: plotbiomes
+Type: Package
+Title: Data for plotting Whittaker biomes
+Version: 0.0.0.9000
+Author: Valentin Stefan
+Maintainer: Valentin Stefan <no_valid_yet@example.com>
+Description: Provides a data.frame with boundaries of biomes that can be used with ggplot2.
+License: MIT | file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Roxygen: list(markdown = TRUE)
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
