@@ -1,8 +1,8 @@
-^.*\.Rproj$             # Automatically added by RStudio
-^\.Rproj\.user$         # Automatically added by RStudio. Used for temporary files.
-^README\.Rmd$           # An Rmarkdown file used to generate README.md
-^_NotInclude$           # Folder not to include
-^\.ps$                  # file type not to include
+^.*\.Rproj$
+^\.Rproj\.user$
+^README\.Rmd$
+^_NotInclude$
+^\.ps$
 ^\.gitattributes$
 ^\.gitignore$
 ^\.git$
