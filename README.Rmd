@@ -55,5 +55,3 @@ ggplot() +
                    labels = names(Ricklefs_colors),
                    values = Ricklefs_colors)
 ```
-
-![example](man/figures/README-example-1.png)

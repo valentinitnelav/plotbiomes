@@ -48,5 +48,3 @@ ggplot() +
 ```
 
 ![](man/figures/README-example-1.png)
-
-![example](man/figures/README-example-1.png)
