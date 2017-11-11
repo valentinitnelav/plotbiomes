@@ -21,7 +21,7 @@ ggplot() +
               aes(x      = temp_c,
                   y      = precp_cm,
                   fill   = biome,
-                  group  = biome),
+                  group  = biome_id),
               colour = "gray98", # colour of polygon border
               size   = 0.5) +    # thickness of polygon border
  # fill the polygons with predefined colors
