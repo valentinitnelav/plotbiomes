@@ -5,9 +5,9 @@ plotbiomes
 
 R package for plotting [Whittaker' biomes](https://en.wikipedia.org/wiki/Biome#Whittaker_.281962.2C_1970.2C_1975.29_biome-types) with [ggplot2](https://github.com/tidyverse/ggplot2).
 
-The original graph is Figure 5.5 in *Ricklefs, R. E. (2008), The economy of nature. W. H. Freeman and Company.* (Chapter 5, Biological Communities, The biome concept). The figure was processed and brought into an R friendly format. Details are given in *Whittaker\_biomes\_dataset.html* vignette. To access the vignette, after installation run `RShowDoc("Whittaker_biomes_dataset", package = "plotbiomes")`
+The original graph is Figure 5.5 in *Ricklefs, R. E. (2008), The economy of nature. W. H. Freeman and Company.* (Chapter 5, Biological Communities, The biome concept). The figure was processed and brought into an R friendly format. Details are given in [Whittaker\_biomes\_dataset](https://rawgit.com/valentinitnelav/plotbiomes/master/inst/doc/Whittaker_biomes_dataset.html) vignette, or after package installation, run `RShowDoc("Whittaker_biomes_dataset", package = "plotbiomes")`
 
-Plotting Whittaker' biomes was addressed also in [BIOMEplot](https://github.com/kunstler/BIOMEplot) by Georges Kunstler.
+Plotting Whittaker' biomes was also addressed in [BIOMEplot](https://github.com/kunstler/BIOMEplot) by Georges Kunstler.
 
 Installation
 ------------
@@ -16,15 +16,13 @@ You can install `plotbiomes` from github with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("valentinitnelav/plotbiomes", build_vignettes = TRUE)
-# If you do not want the vignettes installed then simply run:
 devtools::install_github("valentinitnelav/plotbiomes")
 ```
 
 Example
 -------
 
-After installation check the *Whittaker\_biomes\_examples.html* vignette by executing `RShowDoc("Whittaker_biomes_examples", package = "plotbiomes")`
+Check examples in [Whittaker\_biomes\_examples](https://rawgit.com/valentinitnelav/plotbiomes/master/inst/doc/Whittaker_biomes_examples.html) vignette, or after package installation, run `RShowDoc("Whittaker_biomes_examples", package = "plotbiomes")`
 
 Simple example of plotting Whittaker' biomes:
 
