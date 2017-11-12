@@ -7,4 +7,3 @@
 ^\.gitignore$
 ^\.git$
 ^README-.*\.png$
-^inst/doc$
