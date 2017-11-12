@@ -1,6 +1,6 @@
 Package: plotbiomes
 Type: Package
-Title: Data for plotting Whittaker biomes
+Title: Data for plotting Whittaker biomes with ggplot2
 Version: 0.0.0.9000
 Author: Valentin Stefan
 Maintainer: Valentin Stefan <no_valid_yet@example.com>
