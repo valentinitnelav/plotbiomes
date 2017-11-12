@@ -14,9 +14,7 @@ $RECYCLE.BIN/
 *.lnk
 # =========================
 # Operating System Files
-# =========================
 # OSX
-# =========================
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -38,4 +36,3 @@ Temporary Items
 .Rproj.user
 _NotInclude
 .Rhistory
-inst/exdata/doc
