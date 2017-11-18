@@ -3,7 +3,7 @@
 plotbiomes
 ==========
 
-R package for plotting [Whittaker' biomes](https://en.wikipedia.org/wiki/Biome#Whittaker_.281962.2C_1970.2C_1975.29_biome-types) with [ggplot2](https://github.com/tidyverse/ggplot2).
+R package containing data for plotting [Whittaker' biomes](https://en.wikipedia.org/wiki/Biome#Whittaker_.281962.2C_1970.2C_1975.29_biome-types) with [ggplot2](https://github.com/tidyverse/ggplot2).
 
 The original graph is Figure 5.5 in *Ricklefs, R. E. (2008), The economy of nature. W. H. Freeman and Company.* (Chapter 5, Biological Communities, The biome concept). The figure was processed and brought into an R friendly format. Details are given in [Whittaker\_biomes\_dataset](https://rawgit.com/valentinitnelav/plotbiomes/master/inst/doc/Whittaker_biomes_dataset.html) vignette, or after package installation, run `RShowDoc("Whittaker_biomes_dataset", package = "plotbiomes")`
 
