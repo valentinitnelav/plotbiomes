@@ -9,3 +9,4 @@
 ^README-.*\.png$
 ^\.travis\.yml$
 ^vignettes\/Whittaker_biomes_dataset\.Rmd$
+^\.RData

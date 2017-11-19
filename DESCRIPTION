@@ -8,7 +8,8 @@ Description: Provides a data.frame with boundaries of biomes that can be used wi
 License: MIT + file LICENSE
 Depends: ggplot2
 Imports: grImport
-Enhances: raster
+Enhances: raster,
+    sp
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
