@@ -7,3 +7,4 @@
 ^\.gitignore$
 ^\.git$
 ^README-.*\.png$
+^\.travis\.yml$
