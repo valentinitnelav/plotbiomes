@@ -3,9 +3,5 @@
 language: R
 sudo: required
 cache: packages
-r:
-  -oldrelease
-  -release
-  -devel
 apt_packages:
   -ghostscript
