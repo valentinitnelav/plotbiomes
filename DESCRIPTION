@@ -7,8 +7,8 @@ Maintainer: Valentin Stefan <no_valid_yet@example.com>
 Description: Provides a data.frame with boundaries of biomes that can be used with ggplot2.
 License: MIT + file LICENSE
 Depends: ggplot2
-Imports: grImport
-Enhances: raster,
+Imports: grImport,
+    raster,
     sp
 Encoding: UTF-8
 LazyData: true
