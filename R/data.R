@@ -43,7 +43,6 @@
 #'               size   = 0.5)      # thickness of polygon border
 #'
 #' # Run example in console with: example(Whittaker_biomes)
-#' # For more examples run: RShowDoc("Whittaker_biomes_examples", package = "plotbiomes")
 #' @md
 "Whittaker_biomes"
 
@@ -79,6 +78,5 @@
 #'                    values = Ricklefs_colors)
 #'
 #' # Run example in console with: example(Ricklefs_colors)
-#' # For more examples run: RShowDoc("Whittaker_biomes_examples", package = "plotbiomes")
 #' @md
 "Ricklefs_colors"
