@@ -24,7 +24,7 @@
 #' GitHub page [here](https://github.com/valentinitnelav/plotbiomes)
 #'
 #' @author
-#' Valentin Stefan
+#' Valentin Stefan, Sam Levin
 #'
 #' @md
 #' @docType package
