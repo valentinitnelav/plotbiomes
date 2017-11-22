@@ -1,4 +1,4 @@
-[![Travis-CI Build Status](https://travis-ci.org/levisc8/plotbiomes.svg?branch=master)](https://travis-ci.org/levisc8/plotbiomes)
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 plotbiomes
 ==========
@@ -22,7 +22,7 @@ devtools::install_github("valentinitnelav/plotbiomes")
 Example
 -------
 
-Check examples in [Whittaker\_biomes\_examples](https://rawgit.com/valentinitnelav/plotbiomes/master/inst/doc/Whittaker_biomes_examples.html) vignette, or after package installation, run `RShowDoc("Whittaker_biomes_examples", package = "plotbiomes")`
+Check examples at [Whittaker\_biomes\_examples](https://rawgit.com/valentinitnelav/plotbiomes/master/html/Whittaker_biomes_examples.html).
 
 Simple example of plotting Whittaker' biomes:
 
