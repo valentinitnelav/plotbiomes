@@ -248,4 +248,4 @@ Ricklefs_colors
 <div id='examples'/>
 ## Examples
 
-Check examples in [Whittaker_biomes_examples](https://rawgit.com/valentinitnelav/plotbiomes/master/inst/doc/Whittaker_biomes_examples.html).
+Check examples in [Whittaker_biomes_examples](https://rawgit.com/valentinitnelav/plotbiomes/master/html/Whittaker_biomes_examples.html).
