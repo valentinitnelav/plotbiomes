@@ -16,4 +16,4 @@
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
 
-inst/doc/*.html linguist-documentation
+html/*.html linguist-documentation
