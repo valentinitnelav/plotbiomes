@@ -40,6 +40,5 @@ ggplot() +
               size   = 0.5)      # thickness of polygon border
 
 # Run example in console with: example(Whittaker_biomes)
-# For more examples run: RShowDoc("Whittaker_biomes_examples", package = "plotbiomes")
 }
 \keyword{datasets}
