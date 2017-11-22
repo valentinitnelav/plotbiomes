@@ -8,7 +8,7 @@
 #'
 #' @return An object of class \code{gg} and \code{ggplot}.
 #'
-#' @author Valentin Stefan, Sam Levin
+#' @author Sam Levin, Valentin Stefan
 #'
 #' @import ggplot2
 #' @importFrom utils data
