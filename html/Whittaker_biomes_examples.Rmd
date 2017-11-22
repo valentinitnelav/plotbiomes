@@ -9,17 +9,12 @@ output:
       collapsed: false
       smooth_scroll: true
     fig_caption: true
-vignette: >
-  %\VignetteIndexEntry{Whittaker biomes - examples}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 # Table of contents
 - [Simple example](#simple_example)
 - [Adding color](#color)
 - [Add data points](#data)
-
 
 
 <div id='simple_example'/>
