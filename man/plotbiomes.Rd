@@ -26,5 +26,5 @@ GitHub page \href{https://github.com/valentinitnelav/plotbiomes}{here}
 }
 
 \author{
-Valentin Stefan
+Valentin Stefan, Sam Levin
 }
