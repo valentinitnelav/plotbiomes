@@ -66,16 +66,16 @@ Generate random locations and extract temperature and precipitation from WorldCl
 require(raster)
 # Read temperature and precipitation as raster stack
 path <- system.file("extdata", "temp_pp.tif", package = "plotbiomes")
-temp_pp <- stack(path)
+temp_pp <- raster::stack(path)
 names(temp_pp) <- c("temperature", "precipitation")
 
 set.seed(66) # random number generator
 # Create random locations within the bounding box of the raster
-points <- spsample(as(temp_pp@extent, 'SpatialPolygons'), 
-                   n = 1000, 
-                   type = "random")
+points <- sp::spsample(as(temp_pp@extent, 'SpatialPolygons'), 
+                       n = 1000, 
+                       type = "random")
 # Extract temperature and precipitation values from raster
-extractions <- extract(temp_pp, points)
+extractions <- raster::extract(temp_pp, points)
 extractions <- data.frame(extractions)
 # Adjust temperature values to "usual" scale because
 # WorldClim temperature data has a scale factor of 10.

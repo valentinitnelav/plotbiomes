@@ -1,4 +1,4 @@
-
+[![Travis-CI Build Status](https://travis-ci.org/levisc8/plotbiomes.svg?branch=master)](https://travis-ci.org/levisc8/plotbiomes)
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 plotbiomes
 ==========
