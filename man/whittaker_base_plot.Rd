@@ -18,5 +18,5 @@ This can be modified by passing additional \code{\link{ggplot2}} style
 arguments to it
 }
 \author{
-Valentin Stefan, Sam Levin
+Sam Levin, Valentin Stefan
 }
