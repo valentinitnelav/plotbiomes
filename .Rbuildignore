@@ -8,5 +8,5 @@
 ^\.git$
 ^README-.*\.png$
 ^\.travis\.yml$
-^vignettes\/Whittaker_biomes_dataset\.Rmd$
+^html$
 ^\.RData
