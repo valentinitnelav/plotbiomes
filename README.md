@@ -42,7 +42,8 @@ ggplot() +
  scale_fill_manual(name   = "Whittaker biomes",
                    breaks = names(Ricklefs_colors),
                    labels = names(Ricklefs_colors),
-                   values = Ricklefs_colors)
+                   values = Ricklefs_colors) +
+ theme_bw()
 ```
 
 ![](man/figures/README-example-1.png)
