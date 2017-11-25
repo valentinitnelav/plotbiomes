@@ -6,21 +6,16 @@
 \alias{plotbiomes-package}
 \title{plotbiomes: Data for plotting Whittaker biomes with ggplot2.}
 \description{
-This is a package without functions, containing only data for plotting Whittaker biomes with ggplot2.
+This is a package for plotting Whittaker biomes with ggplot2.
 
 The original graph is Figure 5.5 in \emph{Ricklefs, R. E. (2008), The economy of nature. W. H. Freeman and Company.}
 (Chapter 5, Biological Communities, The biome concept).
 The figure was processed and brought into an R friendly format.
-Details are given in \href{https://rawgit.com/valentinitnelav/plotbiomes/master/inst/doc/Whittaker_biomes_dataset.html}{Whittaker_biomes_dataset}
-vignette, or run \code{RShowDoc("Whittaker_biomes_dataset", package = "plotbiomes")}
+Details are given in \href{https://rawgit.com/valentinitnelav/plotbiomes/master/html/Whittaker_biomes_dataset.html}{Whittaker_biomes_dataset}.
 }
 \section{Help}{
 
-Examples at: \href{https://rawgit.com/valentinitnelav/plotbiomes/master/inst/doc/Whittaker_biomes_examples.html}{Whittaker_biomes_examples}
-
-or run
-
-\code{RShowDoc("Whittaker_biomes_examples", package = "plotbiomes")}
+Examples at: \href{https://rawgit.com/valentinitnelav/plotbiomes/master/html/Whittaker_biomes_examples.html}{Whittaker_biomes_examples}
 
 GitHub page \href{https://github.com/valentinitnelav/plotbiomes}{here}
 }

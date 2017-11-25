@@ -24,8 +24,7 @@ Biological Communities, The biome concept).
 \details{
 Values in \strong{temp_c} and \strong{precp_cm} represent edge points on the borders
 between biome polygons as they were digitized.
-For more details see the vignette:
-\code{RShowDoc("Whittaker_biomes_dataset", package = "plotbiomes")}
+For more details see \href{https://rawgit.com/valentinitnelav/plotbiomes/master/html/Whittaker_biomes_dataset.html}{Whittaker_biomes_dataset}
 }
 \examples{
 require(plotbiomes)
