@@ -1,7 +1,4 @@
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-plotbiomes
-==========
+# plotbiomes
 
 R package containing data for plotting [Whittaker' biomes](https://en.wikipedia.org/wiki/Biome#Whittaker_.281962.2C_1970.2C_1975.29_biome-types) with [ggplot2](https://github.com/tidyverse/ggplot2).
 
@@ -9,8 +6,7 @@ The original graph is Figure 5.5 in *Ricklefs, R. E. (2008), The economy of natu
 
 Plotting Whittaker' biomes was also addressed in [BIOMEplot](https://github.com/kunstler/BIOMEplot) by Georges Kunstler.
 
-Installation
-------------
+## Installation
 
 You can install `plotbiomes` from github with:
 
@@ -19,8 +15,7 @@ You can install `plotbiomes` from github with:
 devtools::install_github("valentinitnelav/plotbiomes")
 ```
 
-Example
--------
+## Example
 
 Check examples at [Whittaker\_biomes\_examples](https://rawgit.com/valentinitnelav/plotbiomes/master/html/Whittaker_biomes_examples.html).
 
