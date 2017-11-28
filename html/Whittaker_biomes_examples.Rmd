@@ -138,16 +138,14 @@ plot_3 <- plot_2 +
              bg     = "Deep Sky Blue 4",
              alpha  = 0.6) +
   # set axes label names
-  labs(x = expression("Mean annual temperature " ( degree*C)),
+  labs(x = expression("Mean annual temperature " (degree*C)),
        y = "Mean annual precipitation (cm)") +
   # set range on OY axis and adjust the distance (gap) from OX axis
   scale_y_continuous(limits = c(-5, round(max(extractions$precipitation/10, 
                                               na.rm = TRUE)/50)*50), 
                      expand = c(0, 0)) +
   theme_bw() +
-  theme(legend.justification = c(0, 1),     # anchor the upper left corner of the legend box
-        legend.position = c(0.01, 0.99),    # adjust the position of the corner relative to axes
-        panel.grid.minor = element_blank()) # eliminate minor grids
+  theme(panel.grid.minor = element_blank()) # eliminate minor grids
 
 plot_3
 ```
