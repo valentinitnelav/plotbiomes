@@ -27,8 +27,7 @@
 #' @details
 #' Values in **temp_c** and **precp_cm** represent edge points on the borders
 #' between biome polygons as they were digitized.
-#' For more details see the vignette:
-#' \code{RShowDoc("Whittaker_biomes_dataset", package = "plotbiomes")}
+#' For more details see [Whittaker_biomes_dataset](https://rawgit.com/valentinitnelav/plotbiomes/master/html/Whittaker_biomes_dataset.html)
 #'
 #' @examples
 #' require(plotbiomes)
@@ -43,7 +42,6 @@
 #'               size   = 0.5)      # thickness of polygon border
 #'
 #' # Run example in console with: example(Whittaker_biomes)
-#' # For more examples run: RShowDoc("Whittaker_biomes_examples", package = "plotbiomes")
 #' @md
 "Whittaker_biomes"
 
@@ -79,6 +77,5 @@
 #'                    values = Ricklefs_colors)
 #'
 #' # Run example in console with: example(Ricklefs_colors)
-#' # For more examples run: RShowDoc("Whittaker_biomes_examples", package = "plotbiomes")
 #' @md
 "Ricklefs_colors"

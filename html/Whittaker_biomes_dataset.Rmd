@@ -9,10 +9,6 @@ output:
       collapsed: false
       smooth_scroll: true
     fig_caption: true
-vignette: >
-  %\VignetteIndexEntry{Whittaker biomes - the dataset}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 **This document explains how the `Whittaker_biomes` data frame was constructed.**
@@ -252,4 +248,4 @@ Ricklefs_colors
 <div id='examples'/>
 ## Examples
 
-Check examples in [Whittaker_biomes_examples](https://rawgit.com/valentinitnelav/plotbiomes/master/inst/doc/Whittaker_biomes_examples.html) vignette, or after package installation, run `RShowDoc("Whittaker_biomes_examples", package = "plotbiomes")`.
+Check examples in [Whittaker_biomes_examples](https://rawgit.com/valentinitnelav/plotbiomes/master/html/Whittaker_biomes_examples.html).

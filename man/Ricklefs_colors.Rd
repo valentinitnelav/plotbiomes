@@ -31,6 +31,5 @@ ggplot() +
                    values = Ricklefs_colors)
 
 # Run example in console with: example(Ricklefs_colors)
-# For more examples run: RShowDoc("Whittaker_biomes_examples", package = "plotbiomes")
 }
 \keyword{datasets}

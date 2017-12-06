@@ -1,0 +1,737 @@
+%!PS-Adobe-2.0 EPSF-1.2
+%%BeginProcSet:convertToR 0 0
+(<?xml version='1.0' encoding='ISO-8859-1' ?>
+
+) print
+(<picture version='3' xmlns:rgml='http://r-project.org/RGML' source='C:/Users/sl13sise/Documents/R/win-library/plotbiomes/extdata/graph_ps.ps' date='2017-11-27 20:55:23' creator='R (3.4.2)' >
+
+) print
+true setglobal
+/convertToR dup 100 dict def load begin
+/str 50 string def
+/id 1 def
+/xmax -99999 def
+/xmin  99999 def
+/ymax -99999 def
+/ymin  99999 def
+/transwidth {
+  transform
+  0 0 transform
+  2 index exch sub
+  3 index 2 index sub
+  2 exp exch 2 exp add sqrt
+  3 1 roll pop pop pop
+  } def
+/boxinit {
+  convertToR /bxmax -99999 put
+  convertToR /bxmin  99999 put
+  convertToR /bymax -99999 put
+  convertToR /bymin  99999 put
+  } def
+/boxmove {
+  transform
+  dup
+  convertToR exch /cury exch put
+  dup
+  convertToR /bymin get lt {convertToR /bymin cury put} if
+  convertToR /bymax get gt {convertToR /bymax cury put} if
+  dup
+  convertToR exch /curx exch put
+  dup
+  convertToR /bxmin get lt {convertToR /bxmin curx put} if
+  convertToR /bxmax get gt {convertToR /bxmax curx put} if
+  } def
+/boxline {
+  transform
+  dup
+  convertToR exch /cury exch put
+  dup
+  convertToR /bymin get lt {convertToR /bymin cury put} if
+  convertToR /bymax get gt {convertToR /bymax cury put} if
+  dup
+  convertToR exch /curx exch put
+  dup
+  convertToR /bxmin get lt {convertToR /bxmin curx put} if
+  convertToR /bxmax get gt {convertToR /bxmax curx put} if
+  } def
+/boxcurve {
+ } def
+/boxclose {
+ } def
+/boxupdate {
+  convertToR /bymin get convertToR /ymin get lt {convertToR /ymin convertToR /bymin get put} if
+  convertToR /bymax get convertToR /ymax get gt {convertToR /ymax convertToR /bymax get put} if
+  convertToR /bxmin get convertToR /xmin get lt {convertToR /xmin convertToR /bxmin get put} if
+  convertToR /bxmax get convertToR /xmax get gt {convertToR /xmax convertToR /bxmax get put} if
+ } def
+/fontsize {
+  currentfont /FontMatrix get
+  currentfont /FontType get 1 eq { 1000 1000 matrix scale matrix concatmatrix } if
+  dup 0 exch 1 exch transform transform
+  2 index 0 exch 0 exch transform transform
+  2 index exch sub
+  3 index 2 index sub
+  2 exp exch 2 exp add sqrt
+  5 1 roll pop pop pop pop
+ } def
+/mymove {
+  (	<move) print
+  transform
+  dup
+  convertToR exch /ystart exch put
+  dup
+  convertToR exch /cury exch put
+  dup
+  convertToR /ymin get lt {convertToR /ymin cury put} if
+  dup
+  convertToR /ymax get gt {convertToR /ymax cury put} if
+  ( y=') print str cvs print (') print
+  dup
+  convertToR exch /xstart exch put
+  dup
+  convertToR exch /curx exch put
+  dup
+  convertToR /xmin get lt {convertToR /xmin curx put} if
+  dup
+  convertToR /xmax get gt {convertToR /xmax curx put} if
+  ( x=') print str cvs print (') print
+  (/>
+) print
+} def
+/myline {
+  (	<line) print
+  transform
+  dup
+  convertToR exch /cury exch put
+  dup
+  convertToR /ymin get lt {convertToR /ymin cury put} if
+  dup
+  convertToR /ymax get gt {convertToR /ymax cury put} if
+  ( y=') print str cvs print (') print
+  dup
+  convertToR exch /curx exch put
+  dup
+  convertToR /xmin get lt {convertToR /xmin curx put} if
+  dup
+  convertToR /xmax get gt {convertToR /xmax curx put} if
+  ( x=') print str cvs print (') print
+  (/>
+) print
+  } def
+/mycurve {
+  } def
+/myclose {
+  (	<line) print
+  ( y=') print convertToR /ystart get str cvs print (') print
+  ( x=') print convertToR /xstart get str cvs print (') print
+  (/>
+) print
+  } def
+/printcol {
+  currentcolorspace 0 get
+  dup dup (Separation) eq exch (Pattern) eq or {pop 0.5 0.5 0.5} {dup (DeviceGray) eq exch dup (DeviceRGB) eq exch (DeviceCMYK) eq or or {currentrgbcolor} {currentcolor} ifelse} ifelse
+  (		<rgb) print
+  ( r=') print 2 index str cvs print (') print
+  ( g=') print 1 index str cvs print (') print
+  ( b=') print str cvs print (') print
+  (/>
+) print
+  pop pop
+  } def
+/printlwd {
+  currentlinewidth 0 transform
+  0 0 transform
+  3 index 2 index sub
+  3 index 2 index sub
+  2 exp exch 2 exp add sqrt
+  5 1 roll pop pop pop pop
+  ( lwd=') print str cvs print (') print
+} def
+/printlineend {
+  ( lineend=') print currentlinecap str cvs print (') print
+} def
+/printlinejoin {
+  ( linejoin=') print currentlinejoin str cvs print (') print
+} def
+/printlinemiter {
+  ( linemitre=') print currentmiterlimit str cvs print (') print
+} def
+/printdash {
+  currentdash
+  ( lty=') print pop {0 transform pop 0 0 transform pop sub str cvs print ( ) print} forall (') print
+} def
+/printstyle {
+  (		<style) print
+  printlwd
+  printdash
+  printlineend
+  printlinemiter
+  printlinejoin
+  (/>
+) print
+} def
+/mystroke {
+  (<path type='stroke') print
+  ( id=') print convertToR /id get str cvs print ('>
+) print
+  (	<context>
+) print
+  printcol  
+  printstyle
+  (	</context>
+
+) print
+  pathforall
+  convertToR /id get 1 add convertToR exch /id exch put
+  (</path>
+
+) print
+} def
+/myfill {
+  (<path type='fill') print
+  ( id=') print convertToR /id get str cvs print ('>
+) print
+  (	<context>
+) print
+  printcol
+  printstyle
+  (	</context>
+
+) print
+  pathforall
+  convertToR /id get 1 add convertToR exch /id exch put
+  (</path>
+
+) print
+} def
+/myeofill {
+  (<path type='eofill') print
+  ( id=') print convertToR /id get str cvs print ('>
+) print
+  (	<context>
+) print
+  printcol
+  printstyle
+  (	</context>
+
+) print
+  pathforall
+  convertToR /id get 1 add convertToR exch /id exch put
+  (</path>
+
+) print
+} def
+/mytext {
+  (<text ) print
+  ( id=') print convertToR /id get str cvs print (') print
+  convertToR /id get 1 add convertToR exch /id exch put
+  ( string='###TEXT) print dup print (###TEXT') print
+  ( type='charpath') print
+  convertToR /widthadjfun get cvx exec
+  currentpoint
+  transform
+    dup
+    convertToR exch /cury exch put
+    dup
+    convertToR /ymin get lt {convertToR /ymin cury put} if
+    dup
+    convertToR /ymax get gt {convertToR /ymax cury put} if
+    ( y=') print str cvs print (') print
+    dup
+    convertToR exch /curx exch put
+    dup
+    convertToR /xmin get lt {convertToR /xmin curx put} if
+    dup
+    convertToR /xmax get gt {convertToR /xmax curx put} if
+    ( x=') print str cvs print (') print
+  dup stringwidth
+  dup 0 ne { 1 index 1 index exch atan } { 0 } ifelse
+  convertToR exch /curangle exch put
+  2 exp exch 2 exp add sqrt
+  0 transform
+  exch 0 0 transform pop sub
+  exch 0 0 transform exch pop sub
+  dup 0 ne { 1 index 1 index exch atan } { 0 } ifelse
+  convertToR /curangle get add convertToR exch /curangle exch put
+  ( angle=') print
+    convertToR /curangle get str cvs print (') print
+  2 exp exch 2 exp add sqrt
+  convertToR /curadj get add
+  ( width=') print
+    str cvs print (') print
+  ( height=') print
+    fontsize str cvs print (') print
+  convertToR /bboxfun get cvx exec
+  ( bbox=') print
+  convertToR /bxmin get str cvs print ( ) print
+  convertToR /bymin get str cvs print ( ) print
+  convertToR /bxmax get str cvs print ( ) print
+  convertToR /bymax get str cvs print (') print
+  currentfont /FontName known
+  { ( fontName=') print currentfont /FontName get str cvs print (') print} if
+  currentfont /FontInfo known
+  { currentfont /FontInfo get /FamilyName known
+    { ( fontFamilyName=') print currentfont /FontInfo get /FamilyName get print (') print } if } if
+  currentfont /FontInfo known
+  { currentfont /FontInfo get /FullName known
+    { ( fontFullName=') print currentfont /FontInfo get /FullName get print (') print } if } if
+  (>
+) print
+  (	<context>
+) print
+  printcol
+  printstyle
+  (	</context>
+
+) print
+convertToR /charpathfun get cvx exec
+  (</text>
+
+) print
+} def
+/mychar {
+  (<path type='char') print
+  ( id=') print convertToR /id get str cvs print (') print
+  ( char='###TEXT) print 4 index print (###TEXT' >
+) print
+  pathforall
+  (	<context>
+) print
+  printcol
+  printstyle
+  (	</context>
+
+) print
+  convertToR /id get 1 add convertToR exch /id exch put
+  (</path>
+
+) print
+} def
+/stroke {
+  flattenpath {mymove} {myline} {mycurve} {myclose}
+  mystroke
+  newpath
+} def
+/fill {
+  flattenpath {mymove} {myline} {mycurve} {myclose}
+  myfill
+  newpath
+} def
+/eofill {
+  flattenpath {mymove} {myline} {mycurve} {myclose}
+  myeofill
+  newpath
+} def
+/rectfill {
+  4 dict begin
+  /rheight exch def
+  /rwidth exch def
+  /rx exch def
+  /ry exch def
+  rx ry moveto
+  rwidth 0 rlineto
+  0 rheight rlineto
+  rwidth neg 0 rlineto
+  end
+  closepath
+  fill
+} def
+/rectstroke {
+  4 dict begin
+  /rheight exch def
+  /rwidth exch def
+  /rx exch def
+  /ry exch def
+  rx ry moveto
+  rwidth 0 rlineto
+  0 rheight rlineto
+  rwidth neg 0 rlineto
+  end
+  closepath
+  stroke
+} def
+/nullchar {} def
+/showchar {
+  exch dup 3 -1 roll
+  1 getinterval
+  convertToR /charfun (nullchar) put
+  convertToR /bboxfun (showbbox) put
+  mytext
+  true charpath
+  currentpoint newpath moveto
+} def
+/xshowchar {
+  dup
+  2 index
+  exch
+  1 getinterval
+  currentpoint 3 -1 roll
+  convertToR /charfun (nullchar) put
+  convertToR /bboxfun (showbbox) put
+  mytext
+  pop
+  moveto 2 index exch get 0 rmoveto
+  currentpoint newpath moveto
+} def
+/yshowchar {
+  dup
+  2 index
+  exch
+  1 getinterval
+  currentpoint 3 -1 roll
+  convertToR /charfun (nullchar) put
+  convertToR /bboxfun (showbbox) put
+  mytext
+  pop
+  moveto 2 index exch get 0 exch rmoveto
+  currentpoint newpath moveto
+} def
+/xyshowchar {
+  dup
+  2 index
+  exch
+  1 getinterval
+  currentpoint 3 -1 roll
+  convertToR /charfun (nullchar) put
+  convertToR /bboxfun (showbbox) put
+  mytext
+  pop
+  moveto 2 index exch 2 mul 2 getinterval dup 0 get exch 1 get rmoveto
+  currentpoint newpath moveto
+} def
+/widthshowchar {
+  exch dup 3 -1 roll
+  1 getinterval
+  convertToR /charfun (nullchar) put
+  convertToR /bboxfun (showbbox) put
+  mytext
+  dup 0 get 3 index eq {4 index 4 index rmoveto} if
+  true charpath
+  currentpoint newpath moveto
+} def
+/ashowchar {
+  exch dup 3 -1 roll
+  1 getinterval
+  convertToR /charfun (nullchar) put
+  convertToR /bboxfun (showbbox) put
+  mytext
+  true charpath
+  2 index 2 index rmoveto
+  currentpoint newpath moveto
+} def
+/awidthshowchar {
+  exch dup 3 -1 roll
+  1 getinterval
+  convertToR /charfun (nullchar) put
+  convertToR /bboxfun (showbbox) put
+  mytext
+  dup 0 get 5 index eq {6 index 6 index rmoveto} if
+  true charpath
+  2 index 2 index rmoveto
+  currentpoint newpath moveto
+} def
+/strokechar {
+  exch dup 3 -1 roll
+  1 getinterval
+  dup
+  true charpath flattenpath
+  {mymove} {myline} {mycurve} {myclose}
+  mychar
+  pop
+  currentpoint newpath moveto
+} def
+/xstrokechar {
+  dup
+  2 index
+  exch
+  1 getinterval
+  currentpoint 3 -1 roll
+  dup
+  true charpath flattenpath
+  {mymove} {myline} {mycurve} {myclose}
+  mychar
+  pop
+  moveto 2 index exch get 0 rmoveto
+  currentpoint newpath moveto
+} def
+/ystrokechar {
+  dup
+  2 index
+  exch
+  1 getinterval
+  currentpoint 3 -1 roll
+  dup
+  true charpath flattenpath
+  {mymove} {myline} {mycurve} {myclose}
+  mychar
+  pop
+  moveto 2 index exch get 0 exch rmoveto
+  currentpoint newpath moveto
+} def
+/xystrokechar {
+  dup
+  2 index
+  exch
+  1 getinterval
+  currentpoint 3 -1 roll
+  dup
+  true charpath flattenpath
+  {mymove} {myline} {mycurve} {myclose}
+  mychar
+  pop
+  moveto 2 index exch 2 mul 2 getinterval dup 0 get exch 1 get rmoveto
+  currentpoint newpath moveto
+} def
+/widthstrokechar {
+  exch dup 3 -1 roll
+  1 getinterval
+  dup
+  true charpath flattenpath
+  {mymove} {myline} {mycurve} {myclose}
+  mychar
+  0 get 2 index eq {3 index 3 index rmoveto} if
+  currentpoint newpath moveto
+} def
+/astrokechar {
+  exch dup 3 -1 roll
+  1 getinterval
+  dup
+  true charpath flattenpath
+  {mymove} {myline} {mycurve} {myclose}
+  mychar
+  pop
+  2 index 2 index rmoveto
+  currentpoint newpath moveto
+} def
+/awidthstrokechar {
+  exch dup 3 -1 roll
+  1 getinterval
+  dup
+  true charpath flattenpath
+  {mymove} {myline} {mycurve} {myclose}
+  mychar
+  3 index 3 index rmoveto
+  0 get 4 index eq {5 index 5 index rmoveto} if
+  currentpoint newpath moveto
+} def
+/showchars {
+  dup length -1 add 0 exch 1 exch {showchar} for
+} def
+/xshowchars {
+  dup length -1 add 0 exch 1 exch {xshowchar} for
+} def
+/yshowchars {
+  dup length -1 add 0 exch 1 exch {yshowchar} for
+} def
+/xyshowchars {
+  dup length -1 add 0 exch 1 exch {xyshowchar} for
+} def
+/widthshowchars {
+  dup length -1 add 0 exch 1 exch {widthshowchar} for
+} def
+/ashowchars {
+  dup length -1 add 0 exch 1 exch {ashowchar} for
+} def
+/awidthshowchars {
+  dup length -1 add 0 exch 1 exch {awidthshowchar} for
+} def
+/showpaths {
+  dup length -1 add 0 exch 1 exch {strokechar} for
+} def
+/xshowpaths {
+  dup length -1 add 0 exch 1 exch {xstrokechar} for
+} def
+/yshowpaths {
+  dup length -1 add 0 exch 1 exch {ystrokechar} for
+} def
+/xyshowpaths {
+  dup length -1 add 0 exch 1 exch {xystrokechar} for
+} def
+/widthshowpaths {
+  dup length -1 add 0 exch 1 exch {widthstrokechar} for
+} def
+/ashowpaths {
+  dup length -1 add 0 exch 1 exch {astrokechar} for
+} def
+/awidthshowpaths {
+  dup length -1 add 0 exch 1 exch {awidthstrokechar} for
+} def
+/showbbox {
+  gsave
+  currentpoint newpath moveto dup true charpath flattenpath
+  boxinit
+  {boxmove} {boxline} {boxcurve} {boxclose} pathforall
+  boxupdate
+  grestore
+} def
+/xshowbbox {
+  gsave
+  currentpoint newpath moveto
+  dup length -1 add 0 exch 1 exch { dup 2 index exch 1 getinterval currentpoint 3 -1 roll true charpath flattenpath moveto 2 index exch get 0 rmoveto } for
+  boxinit
+  {boxmove} {boxline} {boxcurve} {boxclose} pathforall
+  boxupdate
+  grestore
+} def
+/yshowbbox {
+  gsave
+  currentpoint newpath moveto
+  dup length -1 add 0 exch 1 exch { dup 2 index exch 1 getinterval currentpoint 3 -1 roll true charpath flattenpath moveto 2 index exch get 0 exch rmoveto } for
+  boxinit
+  {boxmove} {boxline} {boxcurve} {boxclose} pathforall
+  boxupdate
+  grestore
+} def
+/xyshowbbox {
+  gsave
+  currentpoint newpath moveto
+  dup length -1 add 0 exch 1 exch { dup 2 index exch 1 getinterval currentpoint 3 -1 roll true charpath flattenpath moveto 2 index exch 2 mul 2 getinterval dup 0 get exch 1 get rmoveto } for
+  boxinit
+  {boxmove} {boxline} {boxcurve} {boxclose} pathforall
+  boxupdate
+  grestore
+} def
+/widthshowbbox {
+  gsave
+  currentpoint newpath moveto
+  dup length -1 add 0 exch 1 exch { 1 index exch 1 getinterval dup true charpath flattenpath 0 get 2 index eq { 3 index 3 index rmoveto } if } for
+  boxinit
+  {boxmove} {boxline} {boxcurve} {boxclose} pathforall
+  boxupdate
+  grestore
+} def
+/ashowbbox {
+  gsave
+  currentpoint newpath moveto
+  dup length -1 add 0 exch 1 exch { 1 index exch 1 getinterval true charpath flattenpath 2 index 2 index rmoveto } for
+  boxinit
+  {boxmove} {boxline} {boxcurve} {boxclose} pathforall
+  boxupdate
+  grestore
+} def
+/awidthshowbbox {
+  gsave
+  currentpoint newpath moveto
+  dup length -1 add 0 exch 1 exch { 1 index exch 1 getinterval dup true charpath flattenpath 3 index 3 index rmoveto 0 get 4 index eq { 5 index 5 index rmoveto } if } for
+  boxinit
+  {boxmove} {boxline} {boxcurve} {boxclose} pathforall
+  boxupdate
+  grestore
+} def
+/showwidthadj {
+  convertToR /curadj 0 put
+} def
+/widthshowwidthadj {
+  convertToR /curadj 0 put
+  3 index 0 transwidth
+  1 index { 3 index eq { convertToR /curadj get 1 index add convertToR /curadj 3 -1 roll put } if } forall
+  pop
+} def
+/ashowwidthadj {
+  dup length
+  3 index 0 transwidth
+  mul convertToR /curadj 3 -1 roll put
+} def
+/awidthshowwidthadj {
+  dup length
+  3 index 0 transwidth
+  mul convertToR /curadj 3 -1 roll put
+  5 index 0 transwidth
+  1 index { 5 index eq { convertToR /curadj get 1 index add convertToR /curadj 3 -1 roll put } if } forall
+  pop
+} def
+/show {
+  convertToR /charpathfun (showpaths) put
+  convertToR /charfun (showchars) put
+  convertToR /widthadjfun (showwidthadj) put
+  convertToR /bboxfun (showbbox) put
+  mytext
+pop
+  currentpoint newpath moveto
+} def
+/xshow {
+  convertToR /charpathfun (xshowpaths) put
+  convertToR /charfun (xshowchars) put
+  convertToR /widthadjfun (showwidthadj) put
+  convertToR /bboxfun (xshowbbox) put
+  exch
+  mytext
+  exch pop
+  pop
+  currentpoint newpath moveto
+} def
+/yshow {
+  convertToR /charpathfun (yshowpaths) put
+  convertToR /charfun (yshowchars) put
+  convertToR /widthadjfun (showwidthadj) put
+  convertToR /bboxfun (yshowbbox) put
+  exch
+  mytext
+  exch pop
+  pop
+  currentpoint newpath moveto
+} def
+/xyshow {
+  convertToR /charpathfun (xyshowpaths) put
+  convertToR /charfun (xyshowchars) put
+  convertToR /widthadjfun (showwidthadj) put
+  convertToR /bboxfun (xyshowbbox) put
+  exch
+  mytext
+  exch pop
+  pop
+  currentpoint newpath moveto
+} def
+/widthshow {
+  convertToR /charpathfun (widthshowpaths) put
+  convertToR /charfun (widthshowchars) put
+  convertToR /widthadjfun (widthshowwidthadj) put
+  convertToR /bboxfun (widthshowbbox) put
+  mytext
+pop
+  pop pop pop
+  currentpoint newpath moveto
+} def
+/ashow {
+  convertToR /charpathfun (ashowpaths) put
+  convertToR /charfun (ashowchars) put
+  convertToR /widthadjfun (ashowwidthadj) put
+  convertToR /bboxfun (ashowbbox) put
+  mytext
+pop
+  pop pop
+  currentpoint newpath moveto
+} def
+/awidthshow {
+  convertToR /charpathfun (awidthshowpaths) put
+  convertToR /charfun (awidthshowchars) put
+  convertToR /widthadjfun (awidthshowwidthadj) put
+  convertToR /bboxfun (awidthshowbbox) put
+  mytext
+pop
+  pop pop pop pop pop
+  currentpoint newpath moveto
+} def
+end
+false setglobal
+%%EndProcSet
+%% EndProlog
+
+convertToR begin
+userdict begin
+1 setflat
+
+(C:/Users/sl13sise/Documents/R/win-library/plotbiomes/extdata/graph_ps.ps) run
+convertToR begin
+(<summary count=') print convertToR /id get 1 sub str cvs print (') print
+( ymax=') print convertToR /ymax get str cvs print (') print
+( ymin=') print convertToR /ymin get str cvs print (') print
+( xmax=') print convertToR /xmax get str cvs print (') print
+( xmin=') print convertToR /xmin get str cvs print (') print
+(/>
+
+) print
+(</picture>
+) print
+%% EOF
+

@@ -42,5 +42,5 @@ character (e.g. 'red' or '#C1E1DD'). The names for each biome are as follows:
 }
 }
 \author{
-Valentin Stefan, Sam Levin
+Sam Levin, Valentin Stefan
 }

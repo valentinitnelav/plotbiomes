@@ -9,18 +9,16 @@ output:
       collapsed: false
       smooth_scroll: true
     fig_caption: true
-vignette: >
-  %\VignetteIndexEntry{Whittaker biomes - examples}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
+
+[//]: # =======================================================================
 
 # Table of contents
 - [Simple example](#simple_example)
 - [Adding color](#color)
 - [Add data points](#data)
 
-
+[//]: # =======================================================================
 
 <div id='simple_example'/>
 # Simple example
@@ -28,7 +26,6 @@ vignette: >
 ```{r echo = TRUE, message = FALSE, fig.align = 'center', fig.width = 18/2.54, fig.height = 10/2.54, fig.cap = 'Simple example of Whittaker biome polygons with ggplot'}
 
 require(plotbiomes)
-require(ggplot2)
 
 plot_1 <- ggplot() +
   # add biome polygons
@@ -39,24 +36,64 @@ plot_1 <- ggplot() +
                    group  = biome_id),
                # adjust polygon border
                colour = "gray98",
-               size   = 1)
+               size   = 1) +
+  theme_bw()
 plot_1
 ```
+
+Now we can add a vector of colors respecting the order:
+``` {r echo = TRUE}
+names(Ricklefs_colors)
+```
+
+[//]: # =======================================================================
 
 <div id='color'/>
 # Adding color
 Whittaker biomes - using colors as in Figure 5.5 in *Ricklefs, R. E. (2008), The economy of nature. W. H. Freeman and Company.* (Chapter 5, Biological Communities, The biome concept)
 
-```{r echo = TRUE, fig.align = 'center', fig.width = 18/2.54, fig.height = 10/2.54, fig.cap = 'Whittaker biomes - original colors'}
+```{r echo = TRUE, fig.align = 'center', fig.width = 18/2.54, fig.height = 10/2.54, fig.cap = 'Whittaker biomes - colors as in in Ricklefs (2008)'}
 
 plot_2 <- plot_1 +
   # fill the polygons with predefined colors
   scale_fill_manual(name   = "Whittaker biomes",
                     breaks = names(Ricklefs_colors),
                     labels = names(Ricklefs_colors),
-                    values = Ricklefs_colors)
+                    values = Ricklefs_colors) +
+  theme_bw()
 plot_2
 ```
+
+The same can be achieved with a simple function call (author: [Sam Levin]( https://github.com/levisc8)):
+```{r echo = TRUE, fig.align = 'center', fig.width = 18/2.54, fig.height = 10/2.54, fig.cap = 'Plot Whittaker biomes with whittaker_base_plot()'}
+plotbiomes::whittaker_base_plot() + theme_bw()
+```
+
+**Or, add your own palette.** Here is an example with `gray`:
+```{r echo = TRUE, fig.align = 'center', fig.width = 18/2.54, fig.height = 10/2.54, fig.cap = 'Example with gray levels'}
+
+my_palette <- gray(0:8 / 8) # for 9 levels
+names(my_palette) <- names(Ricklefs_colors)
+
+ggplot() +
+  # add biome polygons
+  geom_polygon(data = Whittaker_biomes,
+               aes(x      = temp_c,
+                   y      = precp_cm,
+                   fill   = biome,
+                   group  = biome_id),
+               # adjust polygon border
+               colour = "gray98",
+               size   = 1) +
+  # fill the polygons with desired colors
+  scale_fill_manual(name   = "Whittaker biomes",
+                    breaks = names(Ricklefs_colors),
+                    labels = names(Ricklefs_colors),
+                    values = my_palette) +
+  theme_bw()
+```
+
+[//]: # =======================================================================
 
 <div id='data'/>
 # Add data points
@@ -93,24 +130,22 @@ Example of plot incorporating extraction data corresponding to the locations.
 plot_3 <- plot_2 +
   # add extraction points
   geom_point(data = extractions, 
-             aes(x      = temperature, 
-                 y      = precipitation/10), 
+             aes(x = temperature, 
+                 y = precipitation/10), 
              size   = 2,
              shape  = 21,
              colour = "Blue 4", 
              bg     = "Deep Sky Blue 4",
              alpha  = 0.6) +
   # set axes label names
-  labs(x = expression("Mean annual temperature ("~degree~"C)"),
+  labs(x = expression("Mean annual temperature " (degree*C)),
        y = "Mean annual precipitation (cm)") +
   # set range on OY axis and adjust the distance (gap) from OX axis
   scale_y_continuous(limits = c(-5, round(max(extractions$precipitation/10, 
                                               na.rm = TRUE)/50)*50), 
                      expand = c(0, 0)) +
   theme_bw() +
-  theme(legend.justification = c(0, 1),     # anchor the upper left corner of the legend box
-        legend.position = c(0.01, 0.99),    # adjust the position of the corner relative to axes
-        panel.grid.minor = element_blank()) # eliminate minor grids
+  theme(panel.grid.minor = element_blank()) # eliminate minor grids
 
 plot_3
 ```
