@@ -12,5 +12,5 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
 Roxygen: list(markdown = TRUE)
-Suggests: R.rsp
-VignetteBuilder: R.rsp
+Suggests: knitr
+VignetteBuilder: knitr

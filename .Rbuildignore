@@ -9,5 +9,5 @@
 ^README-.*\.png$
 ^\.travis\.yml$
 ^vignettes\/Whittaker_biomes_dataset\.Rmd$
-^\.RData
+^\.RData$
 ^vignettes\/Whittaker_biomes_examples\.Rmd$

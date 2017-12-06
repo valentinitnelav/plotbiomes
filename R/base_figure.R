@@ -44,7 +44,7 @@ whittaker_base_plot <- function(color_palette = NULL,
   xlabel <- expression("Temperature " ( degree*C))
   if(is.null(color_palette)) {
     utils::data("Ricklefs_colors", envir = environment())
-    colors <- Ricklefs_colors
+    color_palette <- Ricklefs_colors
   }
 
   plt <- ggplot2::ggplot() +
