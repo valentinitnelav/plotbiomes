@@ -3,11 +3,12 @@
 #' @description Creates the Whittaker biome figure from the vignette example.
 #' This can be modified by passing additional \code{\link{ggplot2}} style
 #' arguments to it
-#' @param color_palette A named vector of length 9 that contains either
-#' color names or values. The names should correspond to biome names in the
+#' @param color_palette A named or unnamed vector of length 9 that contains either
+#' color names or values. If named, the names should correspond to biome names in the
 #' \code{Whittaker_biomes} data object. See details for additional information.
 #' The default is to use the colors from Figure 5.5 in Ricklefs, R. E. (2008),
 #' \emph{The economy of nature} (Chapter 5, Biological Communities, The biome concept).
+#' If the vector is not named, the function will insert the names automatically
 #' @param extra_features Additional arguments to customize the Whittaker biome plot
 #'
 #' @return An object of class \code{gg} and \code{ggplot}.
@@ -29,7 +30,7 @@
 #'   \item{\code{Woodland/shrubland}}
 #' }
 #'
-#' @author Valentin Stefan, Sam Levin
+#' @author Sam Levin, Valentin Stefan
 #'
 #' @import ggplot2
 #' @importFrom utils data
@@ -38,13 +39,15 @@
 whittaker_base_plot <- function(color_palette = NULL,
                                 extra_features = NULL) {
   utils::data('Whittaker_biomes', envir = environment())
+  utils::data("Ricklefs_colors", envir = environment())
 
   # degree symbol debugging source:
   # https://stackoverflow.com/questions/37554118/ggplot-inserting-space-before-degree-symbol-on-axis-label
   xlabel <- expression("Temperature " ( degree*C))
   if(is.null(color_palette)) {
-    utils::data("Ricklefs_colors", envir = environment())
     color_palette <- Ricklefs_colors
+  } else if(is.null(names(color_palette))) {
+    names(color_palette) <- names(Ricklefs_colors)
   }
 
   plt <- ggplot2::ggplot() +

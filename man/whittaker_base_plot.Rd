@@ -7,11 +7,12 @@
 whittaker_base_plot(color_palette = NULL, extra_features = NULL)
 }
 \arguments{
-\item{color_palette}{A named vector of length 9 that contains either
-color names or values. The names should correspond to biome names in the
+\item{color_palette}{A named or unnamed vector of length 9 that contains either
+color names or values. If named, the names should correspond to biome names in the
 \code{Whittaker_biomes} data object. See details for additional information.
 The default is to use the colors from Figure 5.5 in Ricklefs, R. E. (2008),
-\emph{The economy of nature} (Chapter 5, Biological Communities, The biome concept).}
+\emph{The economy of nature} (Chapter 5, Biological Communities, The biome concept).
+If the vector is not named, the function will insert the names automatically}
 
 \item{extra_features}{Additional arguments to customize the Whittaker biome plot}
 }
