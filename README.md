@@ -39,6 +39,14 @@ ggplot() +
                    labels = names(Ricklefs_colors),
                    values = Ricklefs_colors) +
  theme_bw()
+ 
+ 
+ # Running the following produces the same output as above, but
+ # is less verbose
+ 
+ whittaker_base_plot() +
+  theme_bw()
+ 
 ```
 
 ![](man/figures/README-example-1.png)
