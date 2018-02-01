@@ -30,8 +30,8 @@
 #' For more details see [Whittaker_biomes_dataset](https://rawgit.com/valentinitnelav/plotbiomes/master/html/Whittaker_biomes_dataset.html)
 #'
 #' @examples
-#' require(plotbiomes)
-#' require(ggplot2)
+#' library(plotbiomes)
+#' library(ggplot2)
 #' ggplot() +
 #'  geom_polygon(data = Whittaker_biomes,
 #'               aes(x      = temp_c,
@@ -60,8 +60,8 @@
 #' Named character vector
 #'
 #' @examples
-#' require(plotbiomes)
-#' require(ggplot2)
+#' library(plotbiomes)
+#' library(ggplot2)
 #' ggplot() +
 #'  geom_polygon(data = Whittaker_biomes,
 #'               aes(x      = temp_c,

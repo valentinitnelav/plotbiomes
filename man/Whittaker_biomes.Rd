@@ -27,8 +27,8 @@ between biome polygons as they were digitized.
 For more details see \href{https://rawgit.com/valentinitnelav/plotbiomes/master/html/Whittaker_biomes_dataset.html}{Whittaker_biomes_dataset}
 }
 \examples{
-require(plotbiomes)
-require(ggplot2)
+library(plotbiomes)
+library(ggplot2)
 ggplot() +
  geom_polygon(data = Whittaker_biomes,
               aes(x      = temp_c,

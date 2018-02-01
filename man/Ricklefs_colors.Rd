@@ -14,8 +14,8 @@ The economy of nature. W. H. Freeman and Company.}
 (Chapter 5, Biological Communities, The biome concept).
 }
 \examples{
-require(plotbiomes)
-require(ggplot2)
+library(plotbiomes)
+library(ggplot2)
 ggplot() +
  geom_polygon(data = Whittaker_biomes,
               aes(x      = temp_c,
