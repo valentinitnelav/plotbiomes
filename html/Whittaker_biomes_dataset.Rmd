@@ -11,45 +11,31 @@ output:
     fig_caption: true
 ---
 
-**This document explains how the `Whittaker_biomes` data frame was constructed.**
+**Goal: present step by step how the biome graph was imported in R from a PDF document.**
 
-# Table of contents
-- [Original graph](#Original_graph)
-- [Processing PDF](#PDF)
-- [Importing PostScript file in R with `grImport`](#grImport)
-    - [Read in the PostScript file](#ReadPS)
-- [Visualize and clean (subset) the "Picture" object](#picture)
-- [Get the PostScript coordinates from the cleaned "Picture" object](#PScoordinates)
-- [Convert PostScript coordinates into meaningful coordinates](#conversion_1)
-    - [Convert between coordinates systems](#conversion_2)
-- [Prepare Whittaker_biomes data frame](#prepare)
-    - [Get the colors also](#colors)
-- [Examples](#examples)
-
-<div id='Original_graph'/>
-## Original graph
+This document explains how the `Whittaker_biomes_poly` SpatialPolygonsDataFrame and the `Whittaker_biomes` data.frame objects were constructed.
 
 The original graph is Figure 5.5 in *Ricklefs, R. E. (2008), The economy of nature. W. H. Freeman and Company.* (Chapter 5, Biological Communities, The biome concept).
 
-<div id='PDF'/>
-## Processing PDF
+## Process PDF
 
+### First steps - Inkscape
 A PDF page containing the Whittaker biomes graph was imported in [Inkscape](https://inkscape.org/en/). Text and extra graphic layers where removed and the remaining layers were exported as PostScipt file format (`File > Save As > Save as type: > PostScript (*.ps)`). Note that a multi-page PDF document can be split into component pages with [PDFTK Builder](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/) application. 
 
-<div id='grImport'/>
-## Importing PostScript file in R with `grImport`
+### Import PostScript in R
+
+This uses the functionality of `grImport` R package.
 
 The main steps of importing PostsScipt in R are described in the [Importing vector graphics](https://cran.r-project.org/web/packages/grImport/vignettes/import.pdf) vignette: *Murrell, P. (2009). Importing vector graphics: The grImport package for R. Journal of Statistical Software, 30(4), 1-37.*
 
 **In addition to installing package `grImport` with the usual `install.packages("grImport")`, [Ghostscript](https://www.ghostscript.com/download/) needs to be installed as well.**
 
-<div id='ReadPS'/>
-### Read in the PostScript file
+### Read the PostScript file
 
 Note: to avoid the ghostscript error 'status 127', the path to ghostscript executable file was given as suggested [here](https://stackoverflow.com/questions/35256501/windows-rgrimport-ghostscript-error-status-127#42393056)
 
 ```{r echo = TRUE, message = FALSE}
-require(grImport)
+library(grImport)
 Sys.setenv(R_GSCMD = normalizePath("C:/Program Files/gs/gs9.22/bin/gswin64c.exe"))
 # Path to example PostScript file
 path <- system.file("extdata", "graph_ps.ps", 
@@ -70,8 +56,9 @@ PostScriptTrace(file = path,
 my_rgml <- readPicture(rgmlFile = RGML_xml_path)
 ```
 
-<div id='picture'/>
-## Visualize and clean (subset) the "Picture" object
+### Clean the picture
+
+The created picture is messy and the noise (extra elements) needs to be excluded. This is done by indexing, searching for the meaningful parts.
 
 ```{r echo = TRUE, fig.show = 'hold', out.width = '45%', fig.align = 'center', fig.cap = 'The picture object (left) and its component paths (right). The picture was flipped in Inkscape.'}
 # Draws the picture
@@ -80,8 +67,8 @@ plot.new(); grid.picture(my_rgml)
 plot.new(); picturePaths(my_rgml)
 ```
 
-By using `picturePaths` one can identify the desired biome lines and the filled polygons. From polygons one can get the fill colors for further use.
-```{r echo = TRUE, fig.show = 'hold', out.width = '45%', fig.align = 'center', fig.cap = 'Polygons (left) and their borders (right)'}
+By using `picturePaths` one can identify the desired biome lines and the filled polygons. From polygons one can get the colors for further use.
+```{r echo = TRUE, fig.show = 'hold', out.width = '45%', fig.align = 'center', fig.cap = 'Selected polygons (left) and their borders (right)'}
 # Selects desired paths from the picture object. 
 # These are the path corresponding to the filled polygons.
 my_fills <- my_rgml[c(3,9,14,16,18,21,23,25,27)]
@@ -102,8 +89,12 @@ plot.new(); grid.picture(my_fills)
 plot.new(); grid.picture(my_rgml_clean)
 ```
 
-<div id='PScoordinates'/>
-## Get the PostScript coordinates from the cleaned "Picture" object
+
+## Coordinates
+
+### Get coordinates
+
+Get the PostScript coordinates from the cleaned "Picture" object.
 
 ```{r echo = TRUE, out.width = '45%', fig.align = 'center', fig.cap = 'Plot using the original PostScript coordinates'}
 x_lst <- vector(mode = "list", length = length(my_rgml_clean@paths))
@@ -121,8 +112,9 @@ par(mar = c(4, 4, 1, 1))
 plot(x,y)
 ```
 
-<div id='conversion_1'/>
-## Convert PostScript coordinates into meaningful coordinates
+### Convert coordinates
+
+**a) Convert PostScript coordinates into meaningful coordinates**
 
 This varies from graph to graph, but in this case luckily there is a grid and axis on the graph that can be used to transform from PostScript coordinates to meaningful coordinates (temperature and precipitations).
 ```{r echo = TRUE, fig.show = 'hold', out.width = '45%', fig.align = 'center', fig.cap = 'Original grid and axis (left) and their PostScript coordinates (right)'}
@@ -149,11 +141,10 @@ abline(h = min(my_axis@summary@yscale), col = "red") # Y min ~ 0
 abline(h = y_grid_unq[6], col = "red") # Y max ~ 400
 ```
 
-<div id='conversion_2'/>
-### Convert between coordinates systems
+**b) Convert between coordinates systems**
 
-Need to identify the corresponding min & max values on OX and OY axis on both coordinates systems.
-The conversion equations are those exemplified [here](https://gamedev.stackexchange.com/questions/32555/how-do-i-convert-between-two-different-2d-coordinate-systems).
+Need to identify the corresponding min & max values on OX and OY axis on both coordinates systems. The conversion equations are those exemplified [here](https://gamedev.stackexchange.com/questions/32555/how-do-i-convert-between-two-different-2d-coordinate-systems).
+
 ```{r echo = TRUE, fig.show = 'hold', out.width = '45%', fig.align = 'center', fig.cap = 'Left - original PostScript coordinates; Right - converted coordinates (precipitation vs. temperature)'}
 # Notations:
 # scs - source coordinate system
@@ -200,37 +191,44 @@ abline(h = 0, col = "red") # Y min
 abline(h = 400, col = "red") # Y max
 ```
 
-<div id='prepare'/>
-## Prepare Whittaker_biomes data frame
+## Prepare data
+
+### Bind raw coordinates
 
 ```{r echo = TRUE}
-Whittaker_biomes <- data.frame(temp_c = xx, 
-                               precp_cm = yy, 
-                               biome_id = as.numeric(names(xx)))
+# Bind the coordinates and the biome ids in one data frame object
+Whittaker_biomes_raw <- data.frame(temp_c   = xx, 
+                                   precp_cm = yy, 
+                                   biome_id = as.numeric(names(xx)))
 
 # Assigns the biome names
-for (i in 1:nrow(Whittaker_biomes)){
-  Whittaker_biomes$biome[i] <- switch(as.character(Whittaker_biomes$biome_id[i]),
-                                      "1" = "Tropical seasonal forest/savanna",
-                                      "2" = "Subtropical desert",
-                                      "3" = "Temperate rain forest",
-                                      "4" = "Tropical rain forest",
-                                      "5" = "Woodland/shrubland",
-                                      "6" = "Tundra",
-                                      "7" = "Boreal forest",
-                                      "8" = "Temperate grassland/desert",
-                                      "9" = "Temperate seasonal forest")
-}
+biomes_tbl <- data.frame(biome_id = 1:9,
+                         biome = c("Tropical seasonal forest/savanna",
+                                   "Subtropical desert",
+                                   "Temperate rain forest",
+                                   "Tropical rain forest",
+                                   "Woodland/shrubland",
+                                   "Tundra",
+                                   "Boreal forest",
+                                   "Temperate grassland/desert",
+                                   "Temperate seasonal forest"))
+Whittaker_biomes_raw <- merge(x  = Whittaker_biomes_raw,
+                              y  = biomes_tbl,
+                              by = "biome_id",
+                              sort = FALSE)
 ```
 
-<div id='colors'/>
-### Get the colors also
+### Get colors
 
-The fill colors where already extracted from PostScript. In the help of `ggplot2::scale_fill_manual` it is recommended to use a named vector. Therefore, colors were stored in the named character vector `Ricklefs_colors` below:
+The colors where already extracted from PostScript. 
+
+In the help of `ggplot2::scale_fill_manual` it is recommended to use a named vector. 
+Therefore, colors were stored in the named character vector `Ricklefs_colors` below:
+
 ```{r echo = TRUE}
 colors # hexadecimal color codes extracted from PostScript
 Ricklefs_colors <- colors
-names(Ricklefs_colors) <- unique(Whittaker_biomes$biome)
+names(Ricklefs_colors) <- biomes_tbl$biome
 # Sets a desired order for the names. This will affect the order in legend.
 biomes_order <- c("Tundra",
                   "Boreal forest",
@@ -245,7 +243,127 @@ Ricklefs_colors <- Ricklefs_colors[order(factor(names(Ricklefs_colors), levels =
 Ricklefs_colors
 ```
 
-<div id='examples'/>
+### Fix overlaps
+
+Note that the raw coordinates have some artefacts - neighboring biomes display some undesired overlapping. 
+
+```{r echo = TRUE, message = FALSE, fig.align = 'center'}
+library(ggplot2)
+
+ggplot(data = Whittaker_biomes_raw,
+       aes(x = temp_c,
+           y = precp_cm,
+           color = biome),
+       alpha = 0.5) +
+  geom_point()
+```
+
+In the figure above one can see some obvious artefacts like the intersection between the coordinates of *Tropical rain forest* and *Temperate rain forest* biomes or between those of *Tropical seasonal forest/savanna* and *Temperate seasonal forest*. A less obvious issue is the fact that neighboring biomes should share identical coordinates along their shared borders.
+
+One way to address these issues is to use the advanced digitization capabilities of a GIS software (e.g. [QGIS]( https://www.qgis.org/en/site/)).
+
+Save the coordinates as shapefile to be further digitized in QGIS.
+
+Note that the digitization can be done directly on a georeferenced version of the graph, without painfully going through the PDF processing and all the steps to retrieve the coordinates form the PDF. The approach presented in this document is far more complex, i.e. digitizing into polygons the points obtained from importing the PostScript image. Why is this complex process presented then? Well, because it is a more secure way to reduce any digitization mistake, but that is debatable. For other graphs might be difficult to georeference them in a GIS application that requires precise identification of at least 4 points distributed across the graph (preferably the corners). Having all the points obtained from the PostScript file eases digitization and reduces mistakes.
+
+```{r echo = TRUE, message = FALSE}
+library(sp)
+library(rgdal)
+
+# Divide precipitation by 10 so that it scales better with temperature
+# in the QGIS canvas. This gives a better visual during digitization.
+# Also reduces the chances of distortions due to spatial projection.
+Whittaker_biomes_raw$precp_cm <- Whittaker_biomes_raw$precp_cm / 10
+
+# Make SpatialPointsDataFrame
+biomes_pts <-
+  sp::SpatialPointsDataFrame(
+    coords = Whittaker_biomes_raw[, c("temp_c", "precp_cm")],
+    data   = Whittaker_biomes_raw,
+    proj4string = CRS("+proj=eck4 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs")
+  )
+
+# Save as ESRI Shapefile
+rgdal::writeOGR(obj    = biomes_pts,
+                dsn    = "../_NotInclude/digitization",
+                layer  = "biomes_pts",
+                driver = "ESRI Shapefile",
+                overwrite_layer = TRUE)
+```
+
+### Digitize with QGIS
+
+A good resource for digitizing with QGIS is [here](http://www.qgistutorials.com/en/docs/digitizing_basics.html). The CRS used was Eckert IV, EPSG 54012 (was deleted for the final product `Whittaker_biomes_poly`). This places the graph on a world map somewhere in the Atlantic, south of Ghana. To distinguish between the points, the scale during digitization varied from 1:1 to 1:24.
+
+<center>
+
+![Print screen from the digitization process in QGIS. The original graph was also georeferenced and used in the background for visual help. The points are those obtained from the PostScript file. Here are digitized into polygons, taking care of the border overlaps or gaps by using the `TRACING` tool.](digitization.png)
+
+</center>
+
+### Prepare `Whittaker_biomes_poly`
+
+```{r echo = TRUE, message = FALSE}
+library(sf)
+
+# Read the digitized polygons
+Whittaker_biomes_poly <-
+  sf::st_read(dsn = "../_NotInclude/digitization/Whittaker_biomes_poly.shp",
+              stringsAsFactors = FALSE)
+
+# Convert back precipitation to cm.
+# This is done by updating the polygons coordinates.
+for (i in 1:nrow(Whittaker_biomes_poly)){
+  st_geometry(Whittaker_biomes_poly)[[i]][[1]][,2] <-
+    10 * st_geometry(Whittaker_biomes_poly)[[i]][[1]][,2]
+}
+
+# Delete the CRS used during digitization in QGIS. There is no need of spatial locations, 
+# because the coordinates are temperature and precipitation.
+st_crs(Whittaker_biomes_poly) <- NA
+
+# Convert from sf to sp object
+Whittaker_biomes_poly <- as(Whittaker_biomes_poly, "Spatial")
+# save(Whittaker_biomes_poly, file = "../data/Whittaker_biomes_poly.rda")
+```
+
+
+### Prepare `Whittaker_biomes`
+
+We avoid applying `ggplot2::fortify` or `broom::tidy` directly on the `Whittaker_biomes_poly` object (which is a `SpatialPolygonsDataFrame`) because this loses the attribute table of the polygons (so the biome names and IDs). One way around is to convert from `SpatialPolygonsDataFrame` to `SpatialLinesDataFrame`, then to `SpatialPointsDataFrame` and then finally to `data.frame` (see [this link](https://gis.stackexchange.com/a/207670/62753)).
+
+```{r echo = TRUE, message = FALSE}
+library(dplyr)
+
+Whittaker_biomes <-
+  Whittaker_biomes_poly %>%
+  as("SpatialLinesDataFrame") %>%
+  as("SpatialPointsDataFrame") %>%
+  as.data.frame %>%
+  select(temp_c = coords.x1, precp_cm = coords.x2, biome_id, biome)
+# save(Whittaker_biomes, file = "../data/Whittaker_biomes.rda")
+```
+
+Now the dataset is ready for plotting with ggplot.
+
+```{r echo = TRUE, message = FALSE, fig.align = 'center'}
+library(ggplot2)
+
+ggplot() +
+  geom_polygon(data = Whittaker_biomes,
+               aes(x    = temp_c,
+                   y    = precp_cm,
+                   fill = biome),
+               colour = "gray98", # colour of polygon border
+               size   = 0.5) +    # thickness of polygon border
+  # fill polygons with predefined colors (as in Ricklefs, 2008)
+  scale_fill_manual(name   = "Whittaker biomes",
+                    breaks = names(Ricklefs_colors),
+                    labels = names(Ricklefs_colors),
+                    values = Ricklefs_colors) +
+  theme_bw()
+```
+
 ## Examples
 
-Check examples in [Whittaker_biomes_examples](https://rawgit.com/valentinitnelav/plotbiomes/master/html/Whittaker_biomes_examples.html).
+Check examples at [Whittaker_biomes_examples](https://rawgit.com/valentinitnelav/plotbiomes/master/html/Whittaker_biomes_examples.html).
