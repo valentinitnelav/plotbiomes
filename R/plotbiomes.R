@@ -1,14 +1,18 @@
-###############################################################################
+## @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+##
 ## This file documents the package.
-###############################################################################
+##
+## @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 #' @title
-#' plotbiomes: Data for plotting Whittaker biomes with ggplot2.
+#' Plot Whittaker biomes with ggplot2
 #'
 #' @description
-#' This is a package for plotting Whittaker biomes with ggplot2.
+#' A package for plotting Whittaker biomes with ggplot2.
+#' It also allows for outlier identification and mapping.
 #'
-#' The original graph is Figure 5.5 in *Ricklefs, R. E. (2008), The economy of nature. W. H. Freeman and Company.*
+#' The original graph is Figure 5.5 in
+#' *Ricklefs, R. E. (2008), The economy of nature. W. H. Freeman and Company.*
 #' (Chapter 5, Biological Communities, The biome concept).
 #' The figure was processed and brought into an R friendly format.
 #' Details are given in [Whittaker_biomes_dataset](https://rawgit.com/valentinitnelav/plotbiomes/master/html/Whittaker_biomes_dataset.html).
