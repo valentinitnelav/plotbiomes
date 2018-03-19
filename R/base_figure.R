@@ -53,10 +53,9 @@ whittaker_base_plot <- function(color_palette = NULL,
   plt <- ggplot2::ggplot() +
     # add biome polygons
     ggplot2::geom_polygon(data = Whittaker_biomes,
-                          ggplot2::aes(x      = temp_c,
-                                       y      = precp_cm,
-                                       fill   = biome,
-                                       group  = biome_id),
+                          ggplot2::aes(x    = temp_c,
+                                       y    = precp_cm,
+                                       fill = biome),
                           # adjust polygon border
                           colour = "gray98",
                           size   = 1) +
