@@ -11,29 +11,18 @@ output:
     fig_caption: true
 ---
 
-[//]: # =======================================================================
-
-# Table of contents
-- [Simple example](#simple_example)
-- [Adding color](#color)
-- [Add data points](#data)
-
-[//]: # =======================================================================
-
-<div id='simple_example'/>
 # Simple example
 
 ```{r echo = TRUE, message = FALSE, fig.align = 'center', fig.width = 18/2.54, fig.height = 10/2.54, fig.cap = 'Simple example of Whittaker biome polygons with ggplot'}
 
-require(plotbiomes)
+library(plotbiomes)
 
 plot_1 <- ggplot() +
   # add biome polygons
   geom_polygon(data = Whittaker_biomes,
-               aes(x      = temp_c,
-                   y      = precp_cm,
-                   fill   = biome,
-                   group  = biome_id),
+               aes(x    = temp_c,
+                   y    = precp_cm,
+                   fill = biome),
                # adjust polygon border
                colour = "gray98",
                size   = 1) +
@@ -46,11 +35,9 @@ Now we can add a vector of colors respecting the order:
 names(Ricklefs_colors)
 ```
 
-[//]: # =======================================================================
+# Add color
 
-<div id='color'/>
-# Adding color
-Whittaker biomes - using colors as in Figure 5.5 in *Ricklefs, R. E. (2008), The economy of nature. W. H. Freeman and Company.* (Chapter 5, Biological Communities, The biome concept)
+Whittaker biomes colored as in Figure 5.5 in *Ricklefs, R. E. (2008), The economy of nature. W. H. Freeman and Company.* (Chapter 5, Biological Communities, The biome concept)
 
 ```{r echo = TRUE, fig.align = 'center', fig.width = 18/2.54, fig.height = 10/2.54, fig.cap = 'Whittaker biomes - colors as in in Ricklefs (2008)'}
 
@@ -64,7 +51,7 @@ plot_2 <- plot_1 +
 plot_2
 ```
 
-The same can be achieved with a simple function call (author: [Sam Levin]( https://github.com/levisc8)):
+The same can be achieved with a simple function call (author: [Sam Levin](https://github.com/levisc8)):
 ```{r echo = TRUE, fig.align = 'center', fig.width = 18/2.54, fig.height = 10/2.54, fig.cap = 'Plot Whittaker biomes with whittaker_base_plot()'}
 plotbiomes::whittaker_base_plot() + theme_bw()
 ```
@@ -78,10 +65,9 @@ names(my_palette) <- names(Ricklefs_colors)
 ggplot() +
   # add biome polygons
   geom_polygon(data = Whittaker_biomes,
-               aes(x      = temp_c,
-                   y      = precp_cm,
-                   fill   = biome,
-                   group  = biome_id),
+               aes(x    = temp_c,
+                   y    = precp_cm,
+                   fill = biome),
                # adjust polygon border
                colour = "gray98",
                size   = 1) +
@@ -93,14 +79,11 @@ ggplot() +
   theme_bw()
 ```
 
-[//]: # =======================================================================
-
-<div id='data'/>
 # Add data points
 
 Generate random locations and extract temperature and precipitation from WorldClim data.
 ```{r, echo = TRUE, message = FALSE}
-require(raster)
+library(raster)
 # Read temperature and precipitation as raster stack
 path <- system.file("extdata", "temp_pp.tif", package = "plotbiomes")
 temp_pp <- raster::stack(path)
@@ -111,6 +94,7 @@ set.seed(66) # random number generator
 points <- sp::spsample(as(temp_pp@extent, 'SpatialPolygons'), 
                        n = 1000, 
                        type = "random")
+proj4string(points) <- temp_pp@crs
 # Extract temperature and precipitation values from raster
 extractions <- raster::extract(temp_pp, points)
 extractions <- data.frame(extractions)
@@ -120,7 +104,7 @@ extractions$temperature <- extractions$temperature/10
 ```
 
 Plot the random locations. Note that points outside of rasters coverage will receive NA-s. They will be dropped by ggplot.
-```{r, echo = TRUE, message = FALSE, out.width = '45%', fig.align = 'center', fig.cap = 'Random locations'}
+```{r, echo = TRUE, message = FALSE, out.width = '45%', fig.align = 'center', fig.cap = 'Extract temperature and precipitation values for 1000 random locations'}
 plot(temp_pp[[1]]/10)
 plot(points,add=T)
 ```
@@ -128,7 +112,7 @@ plot(points,add=T)
 Example of plot incorporating extraction data corresponding to the locations.
 ```{r, echo = TRUE, message = FALSE, fig.align = 'center', fig.width = 18/2.54, fig.height = 10/2.54, fig.cap = 'Example of plot with superimposed data extracted from WorldClim'}
 plot_3 <- plot_2 +
-  # add extraction points
+  # add the temperature - precipitation points
   geom_point(data = extractions, 
              aes(x = temperature, 
                  y = precipitation/10), 
