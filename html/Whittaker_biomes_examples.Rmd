@@ -13,9 +13,10 @@ output:
 
 # Simple example
 
-```{r echo = TRUE, message = FALSE, fig.align = 'center', fig.width = 18/2.54, fig.height = 10/2.54, fig.cap = 'Simple example of Whittaker biome polygons with ggplot'}
+```{r message = FALSE, fig.align = 'center', fig.width = 18/2.54, fig.height = 10/2.54, fig.cap = 'Simple example of Whittaker biome polygons with ggplot'}
 
 library(plotbiomes)
+library(ggplot2)
 
 plot_1 <- ggplot() +
   # add biome polygons
@@ -30,16 +31,16 @@ plot_1 <- ggplot() +
 plot_1
 ```
 
-Now we can add a vector of colors respecting the order:
-``` {r echo = TRUE}
-names(Ricklefs_colors)
-```
-
 # Add color
 
-Whittaker biomes colored as in Figure 5.5 in *Ricklefs, R. E. (2008), The economy of nature. W. H. Freeman and Company.* (Chapter 5, Biological Communities, The biome concept)
+## Suggested colors
 
-```{r echo = TRUE, fig.align = 'center', fig.width = 18/2.54, fig.height = 10/2.54, fig.cap = 'Whittaker biomes - colors as in in Ricklefs (2008)'}
+`Ricklefs_colors` is a predefined vector of colors that comes with `plotbiomes` package. These are  the exact colors from Figure 5.5 in *Ricklefs, R. E. (2008), The economy of nature. W. H. Freeman and Company.* (Chapter 5, Biological Communities, The biome concept)
+``` {r}
+Ricklefs_colors
+```
+
+```{r fig.align = 'center', fig.width = 18/2.54, fig.height = 10/2.54, fig.cap = 'Whittaker biomes - colors as in in Ricklefs (2008)'}
 
 plot_2 <- plot_1 +
   # fill the polygons with predefined colors
@@ -52,15 +53,33 @@ plot_2
 ```
 
 The same can be achieved with a simple function call (author: [Sam Levin](https://github.com/levisc8)):
-```{r echo = TRUE, fig.align = 'center', fig.width = 18/2.54, fig.height = 10/2.54, fig.cap = 'Plot Whittaker biomes with whittaker_base_plot()'}
-plotbiomes::whittaker_base_plot() + theme_bw()
+```{r eval = FALSE}
+whittaker_base_plot() + theme_bw()
 ```
 
-**Or, add your own palette.** Here is an example with `gray`:
-```{r echo = TRUE, fig.align = 'center', fig.width = 18/2.54, fig.height = 10/2.54, fig.cap = 'Example with gray levels'}
+## Define colors
 
-my_palette <- gray(0:8 / 8) # for 9 levels
-names(my_palette) <- names(Ricklefs_colors)
+Of course, if you feel creative, a color palette can be defined with [`RColorBrewer`](https://cran.r-project.org/web/packages/RColorBrewer/index.html) or `grDevices` packages. Try also the [`colorspace`](https://cran.r-project.org/web/packages/colorspace/index.html) package. Or simply pick your favorite 9 colors.
+
+```{r echo = TRUE, message = FALSE, fig.show = 'hold', fig.align = 'center', out.width = '45%', fig.cap = 'Try custom palette'}
+
+library(RColorBrewer)
+
+# the main rule - create 9 colors for the 9 biomes
+
+# failed trial with RColorBrewer :)
+my_palette_1 <- rev(brewer.pal(n = 9, name = "BrBG"))
+whittaker_base_plot(color_palette = my_palette_1)
+
+# this seems a better approach - interpolate 9 colors from given main 3  
+my_palette_2 <- colorRampPalette(colors = c("#F5F5F5",  "#01665E", "#8C510A"))(9)
+whittaker_base_plot(color_palette = my_palette_2)
+```
+
+The above is just a shorter way of this:
+```{r eval=FALSE}
+
+names(my_palette_2) <- names(Ricklefs_colors)
 
 ggplot() +
   # add biome polygons
@@ -75,7 +94,7 @@ ggplot() +
   scale_fill_manual(name   = "Whittaker biomes",
                     breaks = names(Ricklefs_colors),
                     labels = names(Ricklefs_colors),
-                    values = my_palette) +
+                    values = my_palette_2) +
   theme_bw()
 ```
 
