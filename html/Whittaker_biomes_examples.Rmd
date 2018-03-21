@@ -13,7 +13,7 @@ output:
 
 # Simple example
 
-```{r message = FALSE, fig.align = 'center', fig.width = 18/2.54, fig.height = 10/2.54, fig.cap = 'Simple example of Whittaker biome polygons with ggplot'}
+```{r message = FALSE, fig.align = 'center', out.width = '70%', fig.cap = 'Simple example of Whittaker biome polygons with ggplot'}
 
 library(plotbiomes)
 library(ggplot2)
@@ -40,7 +40,7 @@ plot_1
 Ricklefs_colors
 ```
 
-```{r fig.align = 'center', fig.width = 18/2.54, fig.height = 10/2.54, fig.cap = 'Whittaker biomes - colors as in in Ricklefs (2008)'}
+```{r fig.align = 'center', out.width = '70%', fig.cap = 'Whittaker biomes - colors as in in Ricklefs (2008)'}
 
 plot_2 <- plot_1 +
   # fill the polygons with predefined colors
@@ -94,61 +94,60 @@ ggplot() +
   scale_fill_manual(name   = "Whittaker biomes",
                     breaks = names(Ricklefs_colors),
                     labels = names(Ricklefs_colors),
-                    values = my_palette_2) +
-  theme_bw()
+                    values = my_palette_2)
 ```
 
 # Add data points
 
 Generate random locations and extract temperature and precipitation from WorldClim data.
+
 ```{r, echo = TRUE, message = FALSE}
 library(raster)
-# Read temperature and precipitation as raster stack
+library(maptools)
+# Read temperature and precipitation as raster stack.
+# Low resolution raster datasets come with 'plotbiomes' package.
 path <- system.file("extdata", "temp_pp.tif", package = "plotbiomes")
 temp_pp <- raster::stack(path)
 names(temp_pp) <- c("temperature", "precipitation")
 
+data(wrld_simpl) # load world polygons from maptools
+# Eliminate Antarctica - it is not represented in the raster datasets.
+wrld_simpl <- wrld_simpl[wrld_simpl$NAME != "Antarctica", ]
+# Create random locations within world's polygons.
 set.seed(66) # random number generator
-# Create random locations within the bounding box of the raster
-points <- sp::spsample(as(temp_pp@extent, 'SpatialPolygons'), 
-                       n = 1000, 
-                       type = "random")
-proj4string(points) <- temp_pp@crs
-# Extract temperature and precipitation values from raster
-extractions <- raster::extract(temp_pp, points)
-extractions <- data.frame(extractions)
-# Adjust temperature values to "usual" scale because
-# WorldClim temperature data has a scale factor of 10.
+points <- sp::spsample(x = wrld_simpl, n = 50, type = "random")
+# Extract temperature and precipitation values from the raster datasets
+extractions <- raster::extract(temp_pp, points, df = TRUE)
+# Adjust temperature values to normal scale because WorldClim temperature data
+# has a scale factor of 10 (integer storage for saving space).
 extractions$temperature <- extractions$temperature/10
 ```
 
-Plot the random locations. Note that points outside of rasters coverage will receive NA-s. They will be dropped by ggplot.
-```{r, echo = TRUE, message = FALSE, out.width = '45%', fig.align = 'center', fig.cap = 'Extract temperature and precipitation values for 1000 random locations'}
-plot(temp_pp[[1]]/10)
-plot(points,add=T)
+Plot the random locations. Note that any points outside of rasters coverage will receive NA-s. Also they will be dropped by ggplot.
+
+```{r, echo = TRUE, message = FALSE, fig.show = 'hold', out.width = '45%', fig.align = 'center', fig.cap = 'Extract temperature and precipitation values at random locations'}
+
+plot(temp_pp[[1]]/10); points(points)
+plot(temp_pp[[2]]); points(points)
 ```
 
 Example of plot incorporating extraction data corresponding to the locations.
-```{r, echo = TRUE, message = FALSE, fig.align = 'center', fig.width = 18/2.54, fig.height = 10/2.54, fig.cap = 'Example of plot with superimposed data extracted from WorldClim'}
+```{r, echo = TRUE, message = FALSE, out.width = '70%', fig.align = 'center', fig.cap = 'Example of plot with superimposed data extracted from WorldClim'}
 plot_3 <- plot_2 +
   # add the temperature - precipitation points
   geom_point(data = extractions, 
              aes(x = temperature, 
                  y = precipitation/10), 
-             size   = 2,
+             size   = 3,
              shape  = 21,
-             colour = "Blue 4", 
-             bg     = "Deep Sky Blue 4",
-             alpha  = 0.6) +
+             colour = "gray95", 
+             bg     = "black",
+             stroke = 1,
+             alpha  = 0.5) +
   # set axes label names
   labs(x = expression("Mean annual temperature " (degree*C)),
        y = "Mean annual precipitation (cm)") +
-  # set range on OY axis and adjust the distance (gap) from OX axis
-  scale_y_continuous(limits = c(-5, round(max(extractions$precipitation/10, 
-                                              na.rm = TRUE)/50)*50), 
-                     expand = c(0, 0)) +
-  theme_bw() +
-  theme(panel.grid.minor = element_blank()) # eliminate minor grids
+  theme_bw()
 
 plot_3
 ```
