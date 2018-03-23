@@ -32,7 +32,5 @@
 # Package startup message -------------------------------------------------
 
 .onAttach <- function(...) {
-  packageStartupMessage(paste("\n",
-                              strwrap("Happy biome plotting!",
-                                      indent = 5)))
+  packageStartupMessage(strwrap("Happy biome plotting!", indent = 5))
 }
