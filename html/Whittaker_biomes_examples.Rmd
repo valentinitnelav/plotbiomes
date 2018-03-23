@@ -11,6 +11,8 @@ output:
     fig_caption: true
 ---
 
+**This vignette presents some examples of Whittaker biomes plots using the [`plotbiomes`](https://github.com/valentinitnelav/plotbiomes) package.**
+
 # Simple example
 
 ```{r message = FALSE, fig.align = 'center', out.width = '70%', fig.cap = 'Simple example of Whittaker biome polygons with ggplot'}
@@ -121,6 +123,8 @@ extractions <- raster::extract(temp_pp, points, df = TRUE)
 # Adjust temperature values to normal scale because WorldClim temperature data
 # has a scale factor of 10 (integer storage for saving space).
 extractions$temperature <- extractions$temperature/10
+# Convert precipitation from mm to cm
+extractions$precipitation <- extractions$precipitation/10
 ```
 
 Plot the random locations. Note that any points outside of rasters coverage will receive NA-s. Also they will be dropped by ggplot.
@@ -132,21 +136,20 @@ plot(temp_pp[[2]]); points(points)
 ```
 
 Example of plot incorporating extraction data corresponding to the locations.
+
 ```{r, echo = TRUE, message = FALSE, out.width = '70%', fig.align = 'center', fig.cap = 'Example of plot with superimposed data extracted from WorldClim'}
-plot_3 <- plot_2 +
+
+plot_3 <- whittaker_base_plot() +
   # add the temperature - precipitation points
   geom_point(data = extractions, 
              aes(x = temperature, 
-                 y = precipitation/10), 
+                 y = precipitation), 
              size   = 3,
              shape  = 21,
              colour = "gray95", 
              bg     = "black",
              stroke = 1,
              alpha  = 0.5) +
-  # set axes label names
-  labs(x = expression("Mean annual temperature " (degree*C)),
-       y = "Mean annual precipitation (cm)") +
   theme_bw()
 
 plot_3
