@@ -19,9 +19,11 @@ Imports:
     sp (>= 1.2-7)
 Suggests: 
     grImport,
+    sf,
     knitr,
     raster, 
-    roxygen2
+    roxygen2,
+    plotly
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
