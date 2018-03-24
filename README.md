@@ -1,7 +1,7 @@
 # plotbiomes
 
-[![Build Status](https://travis-ci.org/valentinitnelav/plotbiomes.svg?branch=develop)](https://travis-ci.org/valentinitnelav/plotbiomes)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/valentinitnelav/plotbiomes?branch=master&svg=true)](https://ci.appveyor.com/project/valentinitnelav/plotbiomes)
+[![Travis Build Status](https://travis-ci.org/valentinitnelav/plotbiomes.svg?branch=develop)](https://travis-ci.org/valentinitnelav/plotbiomes)
+[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/jag1bo7jaao5jid3/branch/develop?svg=true)](https://ci.appveyor.com/project/valentinitnelav/plotbiomes/branch/develop)
 
 ## Overview
 
