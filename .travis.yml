@@ -1,4 +1,6 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+# Travis configuration guide for R language:
+#   https://docs.travis-ci.com/user/languages/r/
+#   https://github.com/craigcitro/r-travis/wiki/Porting-to-native-R-support-in-Travis
 
 language: r
 r:
@@ -7,3 +9,12 @@ r:
   - devel
 sudo: required
 cache: packages
+
+# Fix installation of udunits2 ?
+# https://stackoverflow.com/a/42387825/5193830
+before_install:
+  - sudo apt-get install -y libudunits2-dev
+
+# Turn off email notifications entirely
+notifications:
+  email: false
