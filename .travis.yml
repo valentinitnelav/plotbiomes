@@ -7,5 +7,3 @@ r:
   - devel
 sudo: required
 cache: packages
-apt_packages:
-  - ghostscript
