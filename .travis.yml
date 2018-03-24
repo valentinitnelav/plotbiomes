@@ -10,6 +10,10 @@ r:
 sudo: required
 cache: packages
 
+# use Trusty archive for package installation
+dist: trusty
+
+# If needed mention newer/different versions of packages other than those on Trusty archive
 # Fix installation of udunits2 ?
 # https://stackoverflow.com/a/42387825/5193830
 before_install:
