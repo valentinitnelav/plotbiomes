@@ -17,3 +17,9 @@
 *.RTF	 diff=astextplain
 
 html/*.html linguist-documentation
+
+# Fixing CRLF conversion settings, required by AppVeyor
+# ref: https://github.com/krlmlr/r-appveyor
+data/* binary
+src/* text=lf
+R/* text=lf

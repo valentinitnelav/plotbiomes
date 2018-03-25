@@ -28,20 +28,26 @@ As presented [here][add_pts] one can extract temperature and precipitation value
 [add_pts]: https://rawgit.com/valentinitnelav/plotbiomes/master/html/Whittaker_biomes_examples.html#add_data_points
 
 ```{r, echo = FALSE, message = FALSE}
+
 library(raster)
 library(maptools)
+
+# ===== Prepare raster stack
 # Read temperature and precipitation as raster stack.
 # Low resolution raster datasets come with 'plotbiomes' package.
 path <- system.file("extdata", "temp_pp.tif", package = "plotbiomes")
 temp_pp <- raster::stack(path)
 names(temp_pp) <- c("temperature", "precipitation")
 
+# ===== Generate random locations
 data(wrld_simpl) # load world polygons from maptools
 # Eliminate Antarctica - it is not represented in the raster datasets.
 wrld_simpl <- wrld_simpl[wrld_simpl$NAME != "Antarctica", ]
 # Create random locations within world's polygons.
 set.seed(66) # random number generator
 points <- sp::spsample(x = wrld_simpl, n = 50, type = "random")
+
+# ===== Extract from raster stack
 # Extract temperature and precipitation values from the raster datasets
 extractions <- raster::extract(temp_pp, points, df = TRUE)
 # Adjust temperature values to normal scale because WorldClim temperature data
@@ -81,7 +87,12 @@ my_outliers <- get_outliers(tp = extractions[, 2:3])
 my_outliers
 ```
 
-Just for fun, here is some code to color/underline the outliers on Whittaker biome plot:
+Below is some code to color/underline the outliers on the Whittaker biome plot (check more coloring options in the vignette [Whittaker_biomes_examples.html](https://rawgit.com/valentinitnelav/plotbiomes/master/html/Whittaker_biomes_examples.html)):
+
+<!--
+library(ggplot2) is still needed for theme_bw()
+This chunk on code could be folded - check https://stackoverflow.com/a/37839683/5193830
+-->
 
 ```{r, echo = TRUE, message = FALSE, out.width = '70%', fig.align = 'center', fig.cap = 'Colored outliers'}
 
@@ -93,29 +104,27 @@ extractions$status <- ifelse(extractions$ID %in% my_outliers$row_idx, "out", "in
 
 # Note that `fill` cannot be used again in the aesthetics 
 # because is already in use for biome polygons color filling.
-# So one could call `geom_point` two times:
-# - once for all points
-# - then for placing the colored outliers on top.
 whittaker_base_plot() +
-  # add the temperature - precipitation points
   geom_point(data = extractions,
              aes(x = temperature,
                  y = precipitation),
-             size   = 3,
              shape  = 21,
-             colour = "gray95",
-             bg     = "black",
-             stroke = 1,
-             alpha  = 0.5) +
-  geom_point(data = extractions[extractions$status == "out",],
+             stroke = 1, # acts as the thickness of the boundary line
+             colour = "gray95", # acts as the color of the boundary line
+             size   = 3.5) +
+  geom_point(data = extractions,
              aes(x = temperature,
-                 y = precipitation),
-             size   = 3,
-             shape  = 21,
-             colour = "gray95",
-             bg     = "red",
-             stroke = 1,
-             alpha  = 0.5) +
+                 y = precipitation,
+                 color = status),
+             shape = 16,
+             size  = 3,
+             alpha = 0.5) +
+  scale_color_manual(name   = "Status",
+                     breaks = c("in", "out"),
+                     values = c("in"  = "black",
+                                "out" = "red"),
+                     labels = c("in"  = "inside",
+                                "out" = "outlier")) +
   theme_bw()
 ```
 

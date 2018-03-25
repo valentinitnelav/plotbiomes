@@ -11,3 +11,4 @@
 ^\.RData$
 ^html$
 ^\.RData
+^appveyor\.yml$
