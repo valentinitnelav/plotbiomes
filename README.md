@@ -1,7 +1,16 @@
 # plotbiomes
 
-[![Travis Build Status](https://travis-ci.org/valentinitnelav/plotbiomes.svg?branch=develop)](https://travis-ci.org/valentinitnelav/plotbiomes)
+<!-- CI badges -->
 [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/jag1bo7jaao5jid3/branch/develop?svg=true)](https://ci.appveyor.com/project/valentinitnelav/plotbiomes/branch/develop)
+[![Travis Build Status](https://travis-ci.org/valentinitnelav/plotbiomes.svg?branch=develop)](https://travis-ci.org/valentinitnelav/plotbiomes)
+<!--
+Fixing errors from Travis CI can be time consuming ... 
+I gave up since the effort to fix the errors is not worth the time!
+The AppVeyor passes gracefully and that is enough for me.
+In Travis, last errors came from `sf` package due to `GDAL` problems
+I tried some suggestions from here: https://stackoverflow.com/a/12143411/5193830 
+but could not fix it...
+-->
 
 ## Overview
 
