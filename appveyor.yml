@@ -1,5 +1,6 @@
 # AppVeyor configuration guide for R language at https://github.com/krlmlr/r-appveyor
 # appveyor.yml reference at https://www.appveyor.com/docs/appveyor-yml/
+# Validate your .appveyor.yml file at https://ci.appveyor.com/tools/validate-yaml
 
 # Notes:
 #   - Minimal appveyor.yml file is an empty file. All sections are optional.
