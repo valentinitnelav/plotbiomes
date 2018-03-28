@@ -5,7 +5,7 @@ Description: This packages contains Whittaker biomes data to plot with ggplot2.
     It also allows for outlier identification and mapping.
 Authors@R: c(
     person("Valentin", "Stefan", email = "valentin.stefan@ufz.de", role = c("cre", "aut")),
-    person("Sam", "Levin", email = "", role = c("aut"))
+    person("Sam", "Levin", email = "levisc8@gmail.com", role = c("aut"))
   )
 Maintainer: Valentin Stefan <valentin.stefan@ufz.de>
 License: MIT + file LICENSE
