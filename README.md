@@ -3,6 +3,8 @@
 <!-- CI badges -->
 [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/jag1bo7jaao5jid3/branch/develop?svg=true)](https://ci.appveyor.com/project/valentinitnelav/plotbiomes/branch/develop)
 [![Travis Build Status](https://travis-ci.org/valentinitnelav/plotbiomes.svg?branch=develop)](https://travis-ci.org/valentinitnelav/plotbiomes)
+[![Coverage Status](https://img.shields.io/codecov/c/github/valentinitnelav/plotbiomes/master.svg)](https://codecov.io/github/valentinitnelav/plotbiomes?branch=master)
+
 <!--
 Fixing errors from Travis CI can be time consuming ... 
 I gave up since the effort to fix the errors is not worth the time!
