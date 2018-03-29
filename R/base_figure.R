@@ -2,14 +2,13 @@
 #'
 #' @description Creates the Whittaker biome figure from the vignette example.
 #' This can be modified by passing additional \code{\link{ggplot2}} style
-#' arguments to it
+#' arguments to it.
 #' @param color_palette A named or unnamed vector of length 9 that contains either
 #' color names or values. If named, the names should correspond to biome names in the
 #' \code{Whittaker_biomes} data object. See details for additional information.
 #' The default is to use the colors from Figure 5.5 in Ricklefs, R. E. (2008),
 #' \emph{The economy of nature} (Chapter 5, Biological Communities, The biome concept).
 #' If the vector is not named, the function will insert the names automatically
-#' @param extra_features Additional arguments to customize the Whittaker biome plot
 #'
 #' @return An object of class \code{gg} and \code{ggplot}.
 #'
@@ -30,14 +29,35 @@
 #'   \item{\code{Woodland/shrubland}}
 #' }
 #'
+#' If the vector is unnamed, the names from \emph{Ricklefs (2008)} will be
+#' inserted automatically.
+#'
+#' Add additional features (e.g. \code{theme()} elements) using normal
+#' \code{ggplot2} syntax. See examples.
+#'
+#' @examples
+#'
+#' library(ggplot2)
+#' # Create the base plot
+#'
+#' whittaker_base_plot()
+#'
+#' # move the legend to top left corner, add border box,
+#' # and adjust the background fill and grid.
+#'
+#' whittaker_base_plot() +
+#'   theme(legend.position = c(0.15, 0.75),
+#'         panel.background = element_blank(),
+#'         panel.grid.major = element_line(gray(0.7)),
+#'         panel.border = element_rect(fill = NA))
+#'
 #' @author Sam Levin, Valentin Stefan
 #'
 #' @import ggplot2
 #' @importFrom utils data
 #' @export
 
-whittaker_base_plot <- function(color_palette = NULL,
-                                extra_features = NULL) {
+whittaker_base_plot <- function(color_palette = NULL) {
   utils::data('Whittaker_biomes', envir = environment())
   utils::data("Ricklefs_colors", envir = environment())
 
@@ -46,8 +66,15 @@ whittaker_base_plot <- function(color_palette = NULL,
   xlabel <- expression("Temperature " ( degree*C))
   if(is.null(color_palette)) {
     color_palette <- Ricklefs_colors
-  } else if(is.null(names(color_palette))) {
+  } else if(is.null(names(color_palette)) |
+            any(is.na(names(color_palette)))) {
+    # ^^second condition throws warning when names aren't specified.
+    # consider changing
+
     names(color_palette) <- names(Ricklefs_colors)
+
+    message("Names for 'color_palette' either not specified or too few",
+            " were specified. Using names from 'Ricklefs_colors'.")
   }
 
   plt <- ggplot2::ggplot() +
@@ -65,8 +92,7 @@ whittaker_base_plot <- function(color_palette = NULL,
                                labels = names(color_palette),
                                values = color_palette) +
     ggplot2::scale_x_continuous(xlabel) +
-    ggplot2::scale_y_continuous('Precipitation (cm)') +
-    extra_features
+    ggplot2::scale_y_continuous('Precipitation (cm)')
 
 
   return(plt)
