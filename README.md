@@ -1,5 +1,5 @@
 # plotbiomes
-
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7145245.svg)](https://doi.org/10.5281/zenodo.7145245)
 <!-- CI badges -->
 [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/jag1bo7jaao5jid3/branch/develop?svg=true)](https://ci.appveyor.com/project/valentinitnelav/plotbiomes/branch/develop)
 [![Travis Build Status](https://travis-ci.org/valentinitnelav/plotbiomes.svg?branch=develop)](https://travis-ci.org/valentinitnelav/plotbiomes)
@@ -49,3 +49,13 @@ ggsave(filename = "man/figures/README-example-1.png", dpi = 75)
 -->
 
 ![](man/figures/README-example-1.png)
+
+# How to cite the package?
+
+I just uploaded this packge on Zenodo after almost 5 years :)
+I noticed that there are several forks by now and I presume people adapt it to their needs, plus I do not have the needed time to fully maintain this.
+Nevertheless, would be nice to cite this package if you make use of it.
+
+You can cite the first release of the package as:
+
+> Valentin Ștefan, & Sam Levin. (2018). valentinitnelav/plotbiomes: First release (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.7145245
