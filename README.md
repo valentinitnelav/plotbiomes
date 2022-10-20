@@ -62,6 +62,8 @@ You can cite the first release of the package as:
 
 Examples of scientific papers using and citing the package can be found [here](https://scholar.google.com/scholar?cites=2391488723410980978&as_sdt=2005&sciodt=0,5&hl=en):
 
+Wolf, S., Mahecha, M.D., Sabatini, F.M. et al. Citizen science plant observations encode global trait patterns. Nat Ecol Evol (2022). https://doi.org/10.1038/s41559-022-01904-x
+
 Carmona, C.P., Bueno, C.G., Toussaint, A., Träger, S., Díaz, S., Moora, M., Munson, A.D., Pärtel, M., Zobel, M. and Tamme, R., 2021. Fine-root traits in the global spectrum of plant form and function. Nature, 597(7878), pp.683-687.
 
 Laughlin, D.C., Mommer, L., Sabatini, F.M., Bruelheide, H., Kuyper, T.W., McCormack, M.L., Bergmann, J., Freschet, G.T., Guerrero-Ramírez, N.R., Iversen, C.M. and Kattge, J., 2021. Root traits explain plant species distributions along climatic gradients yet challenge the nature of ecological trade-offs. Nature Ecology & Evolution, 5(8), pp.1123-1134.
