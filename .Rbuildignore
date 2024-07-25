@@ -12,3 +12,4 @@
 ^html$
 ^\.RData
 ^appveyor\.yml$
+^codecov\.yml$
