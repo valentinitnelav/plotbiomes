@@ -17,6 +17,7 @@ init:
         $ErrorActionPreference = "Stop"
         Invoke-WebRequest http://raw.github.com/krlmlr/r-appveyor/master/scripts/appveyor-tool.ps1 -OutFile "..\appveyor-tool.ps1"
         Import-Module '..\appveyor-tool.ps1'
+        Write-Host "Current Working Directory during init:" (Get-Location).Path
 
 install:
   ps: Bootstrap
@@ -26,6 +27,7 @@ cache:
 
 before_build:
   - cmd: ECHO Current Working Directory: %CD%
+  - ps: Write-Host "Current Working Directory before build:" (Get-Location).Path
   - cmd: if exist C:\projects\plotbiomes\plotbiomes.Rproj del C:\projects\plotbiomes\plotbiomes.Rproj
 
 # Adapt as necessary starting from here
