@@ -24,6 +24,10 @@ install:
 cache:
   - C:\RLibrary
 
+before_build:
+  - cmd: ECHO Current Working Directory: %CD%
+  - cmd: if exist C:\projects\plotbiomes\plotbiomes.Rproj del C:\projects\plotbiomes\plotbiomes.Rproj
+
 # Adapt as necessary starting from here
 
 build_script:
