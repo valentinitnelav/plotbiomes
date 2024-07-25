@@ -57,3 +57,7 @@ artifacts:
 
   - path: '\*_*.zip'
     name: Bits
+
+environment:
+  exclude:
+    - C:\projects\plotbiomes\plotbiomes.Rproj
