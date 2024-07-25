@@ -18,17 +18,42 @@ but could not fix it...
 
 R package for plotting [Whittaker' biomes](https://en.wikipedia.org/wiki/Biome#Whittaker_.281962.2C_1970.2C_1975.29_biome-types) with [ggplot2](https://github.com/tidyverse/ggplot2).
 
-The original graph is Figure 5.5 in *Ricklefs, R. E. (2008), The economy of nature. W. H. Freeman and Company.* (Chapter 5, Biological Communities, The biome concept). The figure was processed and brought into an R friendly format. Details are given in [Whittaker_biomes_dataset.html](https://rawgit.com/valentinitnelav/plotbiomes/master/html/Whittaker_biomes_dataset.html) document.
-
 Plotting Whittaker' biomes was also addressed in [BIOMEplot](https://github.com/kunstler/BIOMEplot) package by Georges Kunstler and in [ggbiome](https://github.com/guillembagaria/ggbiome) package by Guillem Bagaria, Victor Granda and Georges Kunstler.
+
+### Dataset for the figure
+
+To get the data frame used for plotting, use this:
+```r
+data(Whittaker_biomes)
+Whittaker_biomes
+```
+```sh
+       temp_c precp_cm biome_id  biome precp_mm
+1   -10.21600 1.607134        6 Tundra 16.07134
+1.1 -10.62857 1.696938        6 Tundra 16.96938
+1.2 -11.14116 1.846052        6 Tundra 18.46052
+1.3 -11.61776 2.028094        6 Tundra 20.28094
+1.4 -12.05961 2.242129        6 Tundra 22.42129
+1.5 -12.46799 2.486286        6 Tundra 24.86286
+```
+
+The graph generation was inspired by Figure 5.5 from *Ricklefs, R. E. (2008), The economy of nature. W. H. Freeman and Company.* (Chapter 5, Biological Communities, The biome concept). While the design and concept of the graph are inspired by the published work, the implementation in this R package is original and created independently to facilitate ecological data visualization and analysis in an R-friendly format for the scientific community. For more details on the dataset implementation, please refer to the accompanying [Whittaker_biomes_dataset.html](https://rawgit.com/valentinitnelav/plotbiomes/master/html/Whittaker_biomes_dataset.html) document.
 
 ## Installation
 
-You can install `plotbiomes` from github with:
+You can install `plotbiomes` from GitHub with:
+
+- using `devtools` package:
 
 ``` r
-# install.packages("devtools")
+if (!require(devtools)) install.packages("devtools")
 devtools::install_github("valentinitnelav/plotbiomes")
+```
+
+- using `remotes` package:
+``` r
+if (!require(remotes)) install.packages("remotes")
+remotes::install_github("valentinitnelav/plotbiomes")
 ```
 
 ## Examples & Vignettes
@@ -75,5 +100,3 @@ Lembrechts, J.J., Van den Hoogen, J., Aalto, J., Ashcroft, M.B., De Frenne, P., 
 Falster, D., Gallagher, R., Wenk, E.H., Wright, I.J., Indiarto, D., Andrew, S.C., Baxter, C., Lawson, J., Allen, S., Fuchs, A. and Monro, A., 2021. AusTraits, a curated plant trait database for the Australian flora. Scientific Data, 8(1), pp.1-20.
 
 Massante, J.C., Götzenberger, L., Takkis, K., Hallikma, T., Kaasik, A., Laanisto, L., Hutchings, M.J. and Gerhold, P., 2019. Contrasting latitudinal patterns in phylogenetic diversity between woody and herbaceous communities. Scientific reports, 9(1), pp.1-10.
-
-
