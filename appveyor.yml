@@ -65,5 +65,6 @@ artifacts:
     name: Bits
 
 environment:
-  exclude:
-    - C:\projects\plotbiomes\plotbiomes.Rproj
+  matrix:
+    exclude:
+      - C:\projects\plotbiomes\plotbiomes.Rproj
