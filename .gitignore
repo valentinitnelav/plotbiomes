@@ -37,3 +37,6 @@ Temporary Items
 _NotInclude
 .Rhistory
 .RData
+
+# RPorj file - this created issues with https://ci.appveyor.com/
+plotbiomes.Rproj
