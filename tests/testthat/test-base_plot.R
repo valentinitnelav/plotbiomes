@@ -18,7 +18,8 @@ test_that('function and arguments work correctly', {
                  regexp = "Names for 'color_palette'")
 
   tlc_legend <- whittaker_base_plot() +
-    theme(legend.position = c(0.2, 0.75),
+    theme(legend.position = "inside",
+    	  legend.position.inside = c(0.2, 0.75),
           panel.background = element_blank(),
           panel.grid.major = element_line(gray(0.2)),
           panel.border = element_rect(fill = NA))

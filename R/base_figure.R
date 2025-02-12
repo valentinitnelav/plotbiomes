@@ -84,8 +84,8 @@ whittaker_base_plot <- function(color_palette = NULL) {
                                        y    = precp_cm,
                                        fill = biome),
                           # adjust polygon border
-                          colour = "gray98",
-                          size   = 1) +
+                          colour    = "gray98",
+                          linewidth = 1) +
   # fill the polygons with predefined colors
     ggplot2::scale_fill_manual(name   = "Whittaker biomes",
                                breaks = names(color_palette),
